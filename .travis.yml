@@ -1,0 +1,42 @@
+sudo: required
+services:
+  - docker
+language: go
+go:
+  - '1.7'
+before_install:
+  - sudo add-apt-repository ppa:masterminds/glide -y
+  - sudo apt-get update -q
+  - sudo apt-get install glide -y
+  - mkdir -p $GOPATH/bin
+install:
+  - make deps
+script:
+  - make test
+before_deploy:
+  - GOOS=linux GOARCH=amd64 CGO_ENABLED=0 make
+  - make cross-build
+  - make dist
+deploy:
+  - provider: releases
+    skip_cleanup: true
+    api_key:
+      secure: ikhUiH3mBR/UsF4NaQmNGpEhSXQuMY4aLKaibWyrMDp2ecdWzUQb7nYIng13BLpmVCFMhR3TtRsduNtjvBYHQkSQ5g03G2JVwQvgIYF/tEDcbdsrcJRPsykmZWUNitMXD4rw6aQJKMcKbKoCTgdmYLvge9Z9M3aEy2/odgDgg+uK2/VCuC8hFuf5pRSCVsGi7SjjOuM+5iiQxm+viAkHHT9iqUi33EnK2o9tzCf8P4oBhk4YNsbOBTnsUUO0oi0A50VkAQOmP9DWtrhITtED+mNv7XmQjaTboYYSeVFckSC0XSNkWnM47rDDGkzYyuqikh3i++OYsThsSJ4NCeNjqZY4zHv8yK0RIEnymNinEQiFgSKkBJOmiAh9sXQjKphbbH177YFOiAACm1TXZUrNS7rAxVKZhS4+6KzmMT47P6SPfcxzOd0+RpYKa0kPVzv3AjltVRqjb94VlkvmRruINm8h7i6VFAuTYIbQhhEEok3ZF/0jMNKauw0fy45+zD3eXIYib2mSQjDnOrtJfGJZwZuOZZQ3WaP/vUKeJT6dhW7iI4BCnUNvhbRyRFiDgEezx18QxpWKqTx0fMeNj9+GSjI5gRb7YNfEF8dcYEFel8HbbCj39ZvXsFH/pcfA0vvf/dudwUTkn+3WMn7Z5d+gqVHZ3c3PZx2w96wUThaOsu4=
+    file_glob: true
+    file: 'dist/*.{tar.gz,zip}'
+    on:
+      repo: koudaiii/dockerepos
+      tags: true
+      go: '1.7'
+  - provider: script
+    skip_cleanup: true
+    script: make ci-docker-release
+    on:
+      branch: master
+      go: '1.7'
+  - provider: script
+    skip_cleanup: true
+    script: DOCKER_IMAGE_TAG=$TRAVIS_TAG make ci-docker-release
+    on:
+      tags: true
+      go: '1.7'
