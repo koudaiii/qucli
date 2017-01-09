@@ -1,6 +1,6 @@
 package main
 
-const Name string = "dockerrepos"
+const Name string = "dockerepos"
 const Version string = "0.1.0"
 
 // GitCommit describes latest commit hash.
