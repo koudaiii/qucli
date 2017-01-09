@@ -3,7 +3,7 @@ VERSION   := v0.0.1
 REVISION  := $(shell git rev-parse --short HEAD)
 
 SRCS      := $(shell find . -name '*.go' -type f)
-LDFLAGS   := -ldflags="-s -w -X \"main.Version=$(VERSION)\" -X \"main.Revision=$(REVISION)\""
+LDFLAGS   := -ldflags="-s -w -X \"main.Version=$(VERSION)\" -X \"main.GitCommit=$(REVISION)\""
 
 DIST_DIRS := find * -type d -exec
 
