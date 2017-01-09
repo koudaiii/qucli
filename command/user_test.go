@@ -9,3 +9,7 @@ import (
 func TestAddUserCommand_implement(t *testing.T) {
 	var _ cli.Command = &AddUserCommand{}
 }
+
+func TestDeleteUserCommand_implement(t *testing.T) {
+	var _ cli.Command = &DeleteUserCommand{}
+}
