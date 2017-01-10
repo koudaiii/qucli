@@ -6,6 +6,6 @@ import (
 	"github.com/mitchellh/cli"
 )
 
-func TestDestroyCommand_implement(t *testing.T) {
-	var _ cli.Command = &DestroyCommand{}
+func TestDeleteCommand_implement(t *testing.T) {
+	var _ cli.Command = &DeleteCommand{}
 }

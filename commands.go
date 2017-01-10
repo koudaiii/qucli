@@ -32,8 +32,8 @@ func Commands(meta *command.Meta) map[string]cli.CommandFactory {
 				Meta: *meta,
 			}, nil
 		},
-		"destroy": func() (cli.Command, error) {
-			return &command.DestroyCommand{
+		"delete": func() (cli.Command, error) {
+			return &command.DeleteCommand{
 				Meta: *meta,
 			}, nil
 		},
