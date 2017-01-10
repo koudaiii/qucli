@@ -2,6 +2,7 @@ package command
 
 import (
 	"strings"
+	"fmt"
 )
 
 type CreateCommand struct {
@@ -15,7 +16,7 @@ func (c *CreateCommand) Run(args []string) int {
 }
 
 func (c *CreateCommand) Synopsis() string {
-	return ""
+	return fmt.Sprint("Create repository in Quay")
 }
 
 func (c *CreateCommand) Help() string {

@@ -2,6 +2,7 @@ package command
 
 import (
 	"strings"
+	"fmt"
 )
 
 type AddTeamCommand struct {
@@ -20,7 +21,7 @@ func (c *AddTeamCommand) Run(args []string) int {
 }
 
 func (c *AddTeamCommand) Synopsis() string {
-	return ""
+	return fmt.Sprint("Add team in repository")
 }
 
 func (c *AddTeamCommand) Help() string {
@@ -37,7 +38,7 @@ func (c *DeleteTeamCommand) Run(args []string) int {
 }
 
 func (c *DeleteTeamCommand) Synopsis() string {
-	return ""
+	return fmt.Sprint("Delete team in repository")
 }
 
 func (c *DeleteTeamCommand) Help() string {
