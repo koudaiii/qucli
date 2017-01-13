@@ -9,23 +9,8 @@ import (
 	"github.com/koudaiii/dockerepos/utils"
 )
 
-const QuayURLBase = "https://quay.io/api/v1/repository/"
-
-type QuayRepository struct {
-	Namespace   string `json:"namespace"`
-	Visibility  string `json:"name"`
-	Name        string `json;"repository`
-	Description string `json:"description`
-}
-
-type QuayRepositoryResponse struct {
-	Namespace   string `json:"namespace"`
-	Name        string `json;"repository`
-	Description string `json:"description`
-}
-
-func GetRepository(namespace string, name string) (QuayRepositoryResponse, error) {
-	var resp QuayRepositoryResponse
+func GetRepository(namespace string, name string) (QuayRepository, error) {
+	var resp QuayRepository
 	u, err := url.Parse(QuayURLBase)
 	if err != nil {
 		return resp, err
