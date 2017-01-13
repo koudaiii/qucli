@@ -40,7 +40,9 @@ func (c *GetCommand) Synopsis() string {
 
 func (c *GetCommand) Help() string {
 	helpText := `
-
+dockerepos supported only Quay.io
+Usage: get
+  dockerepos get quay.io/koudaiii/dockerepos
 `
 	return strings.TrimSpace(helpText)
 }
