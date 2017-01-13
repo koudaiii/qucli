@@ -1,14 +1,11 @@
 package main
 
-import (
-	"fmt"
-)
+const Name string = "dockerepos"
 
-var (
-	Version  string
-	Revision string
-)
+// To set this from outside, use go build -ldflags "-X main.Version \"$(VERSION)\""
+var Version string
 
-func printVersion() {
-	fmt.Println("dockerepos version " + Version + ", build " + Revision)
-}
+// GitCommit describes latest commit hash.
+// This value is extracted by git command when building.
+// To set this from outside, use go build -ldflags "-X main.GitCommit \"$(COMMIT)\""
+var GitCommit string
