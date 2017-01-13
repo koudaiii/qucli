@@ -30,6 +30,14 @@ func (c *GetCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 	fmt.Fprintf(os.Stdout, "Repository: quay.io/%v/%v\n", repos.Namespace, repos.Name)
+
+	permissions, err := quay.GetUserPermissions(ss[1], ss[2])
+	for _, p := range permissions.Items {
+		fmt.Fprintf(os.Stdout, "Permission User Name: %v\n", p.Name)
+		fmt.Fprintf(os.Stdout, "Permission User Role: %v\n", p.Role)
+	}
+
+
 	return 0
 }
 
