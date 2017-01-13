@@ -1,8 +1,8 @@
 package command
 
 import (
-	"strings"
 	"fmt"
+	"strings"
 )
 
 type AddUserCommand struct {
@@ -29,7 +29,6 @@ func (c *AddUserCommand) Help() string {
 `
 	return strings.TrimSpace(helpText)
 }
-
 
 func (c *DeleteUserCommand) Run(args []string) int {
 	// Write your code here

@@ -1,8 +1,8 @@
 package command
 
 import (
-"strings"
-"fmt"
+	"fmt"
+	"strings"
 )
 
 type GetCommand struct {

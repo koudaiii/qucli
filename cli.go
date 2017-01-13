@@ -47,7 +47,6 @@ func RunCustom(args []string, commands map[string]cli.CommandFactory) int {
 		HelpFunc:   cli.BasicHelpFunc(Name),
 		HelpWriter: os.Stdout,
 	}
-
 	exitCode, err := cli.Run()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to execute: %s\n", err.Error())

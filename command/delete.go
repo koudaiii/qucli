@@ -1,8 +1,8 @@
 package command
 
 import (
-	"strings"
 	"fmt"
+	"strings"
 )
 
 type DeleteCommand struct {

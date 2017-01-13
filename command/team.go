@@ -1,8 +1,8 @@
 package command
 
 import (
-	"strings"
 	"fmt"
+	"strings"
 )
 
 type AddTeamCommand struct {
@@ -12,7 +12,6 @@ type AddTeamCommand struct {
 type DeleteTeamCommand struct {
 	Meta
 }
-
 
 func (c *AddTeamCommand) Run(args []string) int {
 	// Write your code here
