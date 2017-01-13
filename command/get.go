@@ -2,7 +2,10 @@ package command
 
 import (
 	"fmt"
+	"os"
 	"strings"
+
+	"github.com/koudaiii/dockerepos/quay"
 )
 
 type GetCommand struct {
@@ -10,8 +13,24 @@ type GetCommand struct {
 }
 
 func (c *GetCommand) Run(args []string) int {
-	// Write your code here
+	if len(args) != 1 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
 
+
+	ss := strings.Split(args[0], "/")
+	if len(ss) != 3 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	resp, err := quay.GetRepository(ss[1], ss[2])
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "err: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Fprintf(os.Stdout, "repository: quay.io/%v/%v\n", resp.Name, resp.Namespace)
 	return 0
 }
 
