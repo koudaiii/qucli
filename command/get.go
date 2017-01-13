@@ -18,19 +18,18 @@ func (c *GetCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-
 	ss := strings.Split(args[0], "/")
 	if len(ss) != 3 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	resp, err := quay.GetRepository(ss[1], ss[2])
+	repos, err := quay.GetRepository(ss[1], ss[2])
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "repository: quay.io/%v/%v\n", resp.Name, resp.Namespace)
+	fmt.Fprintf(os.Stdout, "Repository: quay.io/%v/%v\n", repos.Namespace, repos.Name)
 	return 0
 }
 
