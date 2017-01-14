@@ -9,7 +9,7 @@ import (
 	"github.com/koudaiii/dockerepos/utils"
 )
 
-func GetPermissions(namespace string, name string,account string) (QuayPermissions, error) {
+func GetPermissions(namespace string, name string, account string) (QuayPermissions, error) {
 	var resp QuayPermissionsResponse
 	var permissions QuayPermissions
 
