@@ -29,18 +29,26 @@ func (c *GetCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintln(os.Stdout,"=== Repository ===")
-	fmt.Fprintf(os.Stdout, "quay.io/%v/%v\n", repos.Namespace, repos.Name)
+	fmt.Fprintln(os.Stdout, "Repository:")
+	fmt.Fprintf(os.Stdout, "\tquay.io/%v/%v\n", repos.Namespace, repos.Name)
 
-	permissions, err := quay.GetUserPermissions(ss[1], ss[2])
-	fmt.Fprintln(os.Stdout,"\n=== Permissions ===")
+	fmt.Fprintln(os.Stdout,"Permissions:")
+	permissions, err := quay.GetPermissions(ss[1], ss[2],"user")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "err: %v\n", err)
+		os.Exit(1)
+	}
 	for _, p := range permissions.Items {
-		fmt.Fprintf(os.Stdout, "%v(%v)\n", p.Name, p.Role)
+		fmt.Fprintf(os.Stdout, "\t%v(%v)\n", p.Name, p.Role)
 	}
 
-	permissions, err = quay.GetTeamPermissions(ss[1], ss[2])
+	permissions, err = quay.GetPermissions(ss[1], ss[2],"team")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "err: %v\n", err)
+		os.Exit(1)
+	}
 	for _, p := range permissions.Items {
-		fmt.Fprintf(os.Stdout, "%v(%v)\n", p.Name, p.Role)
+		fmt.Fprintf(os.Stdout, "\t%v(%v)\n", p.Name, p.Role)
 	}
 
 	return 0
