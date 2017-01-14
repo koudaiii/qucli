@@ -29,14 +29,19 @@ func (c *GetCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Repository: quay.io/%v/%v\n", repos.Namespace, repos.Name)
+	fmt.Fprintln(os.Stdout,"=== Repository ===")
+	fmt.Fprintf(os.Stdout, "quay.io/%v/%v\n", repos.Namespace, repos.Name)
 
 	permissions, err := quay.GetUserPermissions(ss[1], ss[2])
+	fmt.Fprintln(os.Stdout,"\n=== Permissions ===")
 	for _, p := range permissions.Items {
-		fmt.Fprintf(os.Stdout, "Permission User Name: %v\n", p.Name)
-		fmt.Fprintf(os.Stdout, "Permission User Role: %v\n", p.Role)
+		fmt.Fprintf(os.Stdout, "%v(%v)\n", p.Name, p.Role)
 	}
 
+	permissions, err = quay.GetTeamPermissions(ss[1], ss[2])
+	for _, p := range permissions.Items {
+		fmt.Fprintf(os.Stdout, "%v(%v)\n", p.Name, p.Role)
+	}
 
 	return 0
 }
