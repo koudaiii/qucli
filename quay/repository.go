@@ -27,4 +27,29 @@ func GetRepository(namespace string, name string) (QuayRepository, error) {
 	}
 
 	return resp, nil
+
+func CreateRepository(namespace string, name string, visibility string) (QuayRepository, error) {
+	var repos QuayRepository
+	req, err := json.Marshal(RequsetRepository{
+		Namespace:  namespace,
+		Repository:       name,
+		Visibility: visibility,
+	})
+
+	u, err := url.Parse(QuayURLBase)
+	if err != nil {
+		return repos, err
+	}
+	u.Path = path.Join(u.Path,"repository")
+
+	body, err := utils.HttpPost(u.String(), os.Getenv("QUAY_API_TOKEN"),req)
+	if err != nil {
+		return repos, err
+	}
+
+	if err := json.Unmarshal([]byte(body), &repos); err != nil {
+		return repos, err
+	}
+
+	return repos, nil
 }
