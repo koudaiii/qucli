@@ -30,9 +30,9 @@ func GetRepository(namespace string, name string) (QuayRepository, error) {
 
 func CreateRepository(namespace string, name string, visibility string) (QuayRepository, error) {
 	var repos QuayRepository
-	req, err := json.Marshal(RequsetRepository{
+	req, err := json.Marshal(RequestRepository{
 		Namespace:  namespace,
-		Repository:       name,
+		Repository: name,
 		Visibility: visibility,
 	})
 
@@ -40,9 +40,9 @@ func CreateRepository(namespace string, name string, visibility string) (QuayRep
 	if err != nil {
 		return repos, err
 	}
-	u.Path = path.Join(u.Path,"repository")
+	u.Path = path.Join(u.Path, "repository")
 
-	body, err := utils.HttpPost(u.String(), os.Getenv("QUAY_API_TOKEN"),req)
+	body, err := utils.HttpPost(u.String(), os.Getenv("QUAY_API_TOKEN"), req)
 	if err != nil {
 		return repos, err
 	}
