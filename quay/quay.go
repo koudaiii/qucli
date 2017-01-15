@@ -21,3 +21,10 @@ type QuayRepository struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 }
+
+type RequsetRepository struct {
+	Namespace   string `json:"namespace"`
+	Visibility  string `json:"visibility"`
+	Repository  string `json:"repository"`
+	Description string `json:"description"`
+}
