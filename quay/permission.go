@@ -18,7 +18,7 @@ func GetPermissions(namespace string, name string, account string) (QuayPermissi
 	if err != nil {
 		return permissions, err
 	}
-	u.Path = path.Join(u.Path, namespace, name, "permissions", account) + "/"
+	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", account) + "/"
 
 	body, err := utils.HttpGet(u.String(), os.Getenv("QUAY_API_TOKEN"))
 	if err != nil {

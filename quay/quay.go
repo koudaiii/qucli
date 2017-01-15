@@ -1,6 +1,6 @@
 package quay
 
-const QuayURLBase = "https://quay.io/api/v1/repository/"
+const QuayURLBase = "https://quay.io/api/v1/"
 
 type QuayPermission struct {
 	Name string `json:"name"`
@@ -19,5 +19,12 @@ type QuayRepository struct {
 	Namespace   string `json:"namespace"`
 	Visibility  string `json:"visibility"`
 	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+type RequestRepository struct {
+	Namespace   string `json:"namespace"`
+	Visibility  string `json:"visibility"`
+	Repository  string `json:"repository"`
 	Description string `json:"description"`
 }
