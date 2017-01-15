@@ -29,10 +29,18 @@ func (c *GetCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
+
 	fmt.Fprintln(os.Stdout, "Repository:")
 	fmt.Fprintf(os.Stdout, "\tquay.io/%v/%v\n", repos.Namespace, repos.Name)
 
+	fmt.Fprintln(os.Stdout, "Visibility:")
+	if repos.IsPublic == true {
+		fmt.Fprintln(os.Stdout, "\tpublic")
+	} else {
+		fmt.Fprintln(os.Stdout, "\tprivate")
+	}
 	fmt.Fprintln(os.Stdout, "Permissions:")
+
 	permissions, err := quay.GetPermissions(ss[1], ss[2], "user")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
