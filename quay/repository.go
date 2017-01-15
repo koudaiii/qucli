@@ -10,23 +10,24 @@ import (
 )
 
 func GetRepository(namespace string, name string) (QuayRepository, error) {
-	var resp QuayRepository
+	var repos QuayRepository
 	u, err := url.Parse(QuayURLBase)
 	if err != nil {
-		return resp, err
+		return repos, err
 	}
-	u.Path = path.Join(u.Path, namespace, name)
+	u.Path = path.Join(u.Path, "repository", namespace, name)
 
 	body, err := utils.HttpGet(u.String(), os.Getenv("QUAY_API_TOKEN"))
 	if err != nil {
-		return resp, err
+		return repos, err
 	}
 
-	if err := json.Unmarshal([]byte(body), &resp); err != nil {
-		return resp, err
+	if err := json.Unmarshal([]byte(body), &repos); err != nil {
+		return repos, err
 	}
 
-	return resp, nil
+	return repos, nil
+}
 
 func CreateRepository(namespace string, name string, visibility string) (QuayRepository, error) {
 	var repos QuayRepository
