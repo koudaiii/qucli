@@ -52,7 +52,9 @@ func (c *CreateCommand) Synopsis() string {
 
 func (c *CreateCommand) Help() string {
 	helpText := `
-
+dockerepos supported only Quay.io
+Usage: create
+  dockerepos create quay.io/koudaiii/dockerepos --visibility private
 `
 	return strings.TrimSpace(helpText)
 }
