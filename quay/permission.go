@@ -37,7 +37,7 @@ func GetPermissions(namespace string, name string, accountType string) (QuayPerm
 	return permissions, nil
 }
 
-func AddPermission(namespace string, name string,accountType string, account string, role string) (QuayPermission, error) {
+func AddPermission(namespace string, name string, accountType string, account string, role string) (QuayPermission, error) {
 	var repos QuayPermission
 	var permission QuayPermission
 	req, err := json.Marshal(QuayPermission{
@@ -48,7 +48,7 @@ func AddPermission(namespace string, name string,accountType string, account str
 	if err != nil {
 		return permission, err
 	}
-	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions",accountType, account)
+	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType, account)
 
 	body, err := utils.HttpPut(u.String(), os.Getenv("QUAY_API_TOKEN"), req)
 	if err != nil {
