@@ -54,7 +54,9 @@ func (c *AddUserCommand) Synopsis() string {
 
 func (c *AddUserCommand) Help() string {
 	helpText := `
-
+dockerepos supported only Quay.io
+Usage: add-user
+  dockerepos add-user quay.io/koudaiii/dockerepos koudaiii --role admin
 `
 	return strings.TrimSpace(helpText)
 }
