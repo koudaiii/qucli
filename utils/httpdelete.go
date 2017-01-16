@@ -1,9 +1,9 @@
 package utils
 
 import (
-"fmt"
-"io/ioutil"
-"net/http"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 )
 
 func HttpDelete(url string, apitoken string) (string, error) {
