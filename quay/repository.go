@@ -31,7 +31,7 @@ func GetRepository(namespace string, name string) (ResponseRepository, error) {
 
 func DeleteRepository(namespace string, name string) (ResponseRepository, error) {
 	repos := ResponseRepository{
-		Name: name,
+		Name:      name,
 		Namespace: namespace,
 	}
 	u, err := url.Parse(QuayURLBase)

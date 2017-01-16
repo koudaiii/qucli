@@ -2,8 +2,8 @@ package command
 
 import (
 	"fmt"
-	"strings"
 	"os"
+	"strings"
 
 	"github.com/koudaiii/dockerepos/quay"
 )

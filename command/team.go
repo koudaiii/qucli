@@ -2,7 +2,10 @@ package command
 
 import (
 	"fmt"
+	"os"
 	"strings"
+
+	"github.com/koudaiii/dockerepos/quay"
 )
 
 type AddTeamCommand struct {
@@ -14,8 +17,28 @@ type DeleteTeamCommand struct {
 }
 
 func (c *AddTeamCommand) Run(args []string) int {
-	// Write your code here
+	if err := FlagInit(args); err != nil {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
 
+	if len(args) < 2 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	ss := strings.Split(args[0], "/")
+	if len(ss) != 3 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	repos, err := quay.AddPermission(ss[1], ss[2], "team", args[1], role)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "err: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Fprintf(os.Stdout, "Added! %v(%v) in quay.io/%v/%v\n", repos.Name, repos.Role, ss[1], ss[2])
 	return 0
 }
 

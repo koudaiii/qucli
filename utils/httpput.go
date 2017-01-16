@@ -1,13 +1,14 @@
 package utils
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
-func HttpDelete(url string, apitoken string) (string, error) {
-	req, _ := http.NewRequest("DELETE", url, nil)
+func HttpPut(url string, apitoken string, body []byte) (string, error) {
+	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer([]byte(body)))
 	req.Header.Set("Content-Type", "application/json")
 	if apitoken != "" {
 		req.Header.Set("Authorization", "Bearer "+apitoken)
@@ -25,7 +26,7 @@ func HttpDelete(url string, apitoken string) (string, error) {
 		return "", err
 	}
 
-	if resp.StatusCode != http.StatusNoContent {
+	if resp.StatusCode != http.StatusOK {
 		return "", fmt.Errorf("HTTP error!\nURL: %s\nstatus code: %d\nbody:\n%s\n", url, resp.StatusCode, string(b))
 	}
 
