@@ -24,12 +24,12 @@ func (c *DeleteCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	repos, err := quay.DeleteRepository(ss[1], ss[2])
+	err := quay.DeleteRepository(ss[1], ss[2])
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Deleted! quay.io/%v/%v\n", repos.Namespace, repos.Name)
+	fmt.Fprintf(os.Stdout, "Deleted! quay.io/%v/%v\n", ss[1], ss[2])
 	return 0
 }
 
