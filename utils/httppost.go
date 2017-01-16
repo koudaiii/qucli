@@ -9,8 +9,8 @@ import (
 
 func HttpPost(url string, apitoken string, body []byte) (string, error) {
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer([]byte(body)))
+	req.Header.Set("Content-Type", "application/json")
 	if apitoken != "" {
-		req.Header.Set("Content-Type", "application/json")
 		req.Header.Set("Authorization", "Bearer "+apitoken)
 	}
 
