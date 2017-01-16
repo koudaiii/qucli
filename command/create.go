@@ -9,8 +9,6 @@ import (
 	flag "github.com/spf13/pflag"
 )
 
-var visibility string
-
 type CreateCommand struct {
 	Meta
 }
