@@ -37,6 +37,21 @@ func GetPermissions(namespace string, name string, accountType string) (QuayPerm
 	return permissions, nil
 }
 
+func DeletePermission(namespace string, name string, accountType string, account string) error {
+	u, err := url.Parse(QuayURLBase)
+	if err != nil {
+		return err
+	}
+	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType, account)
+
+	_, err = utils.HttpDelete(u.String(), os.Getenv("QUAY_API_TOKEN"))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func AddPermission(namespace string, name string, accountType string, account string, role string) (QuayPermission, error) {
 	var repos QuayPermission
 	var permission QuayPermission
