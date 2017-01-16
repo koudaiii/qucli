@@ -25,7 +25,7 @@ Manage repository in Quay
 ## Requirements
 
 - Enviroment QUAY_API_TOKEN
-- Get Api Token ref. https://docs.quay.io/api/
+- Get Api Token. [Applications and Tokens](https://docs.quay.io/api/)
 
 ```bash
 $ export QUAY_API_TOKEN=foobar
