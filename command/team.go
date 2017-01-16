@@ -80,7 +80,9 @@ func (c *DeleteTeamCommand) Synopsis() string {
 
 func (c *DeleteTeamCommand) Help() string {
 	helpText := `
-
+dockerepos supported only Quay.io
+Usage: delete-team
+  dockerepos delete-team quay.io/koudaiii/dockerepos infrastructure
 `
 	return strings.TrimSpace(helpText)
 }

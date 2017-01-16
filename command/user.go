@@ -82,7 +82,9 @@ func (c *DeleteUserCommand) Synopsis() string {
 
 func (c *DeleteUserCommand) Help() string {
 	helpText := `
-
+dockerepos supported only Quay.io
+Usage: delete-user
+  dockerepos delete-user quay.io/koudaiii/dockerepos koudaiii
 `
 	return strings.TrimSpace(helpText)
 }
