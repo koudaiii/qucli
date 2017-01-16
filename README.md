@@ -51,14 +51,14 @@ To install, use `go get`:
 
 ```bash
 $ go get -d github.com/koudaiii/dockerepos
-$ cd $GOPATH/src/github.com/koudaiii/kubeps
+$ cd $GOPATH/src/github.com/koudaiii/dockerepos
 $ make deps
 $ make install
 ```
 
 ### Run in a Docker container
 
-docker image is available at [quay.io/koudaiii/kubeps](https://quay.io/repository/koudaiii/kubeps).
+docker image is available at [quay.io/koudaiii/dockerepos](https://quay.io/repository/koudaiii/dockerepos).
 
 ```bash
 # -t is required to colorize logs
