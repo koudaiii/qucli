@@ -54,8 +54,23 @@ func (c *AddTeamCommand) Help() string {
 }
 
 func (c *DeleteTeamCommand) Run(args []string) int {
-	// Write your code here
+	if len(args) != 2 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
 
+	ss := strings.Split(args[0], "/")
+	if len(ss) != 3 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	err := quay.DeletePermission(ss[1], ss[2], "team", args[1])
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "err: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Fprintf(os.Stdout, "Deleted! %v in quay.io/%v/%v\n", args[1], ss[1], ss[2])
 	return 0
 }
 
