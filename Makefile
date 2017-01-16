@@ -1,5 +1,5 @@
 NAME      := dockerepos
-VERSION   := v0.0.1
+VERSION   := v0.1.0
 REVISION  := $(shell git rev-parse --short HEAD)
 
 SRCS      := $(shell find . -name '*.go' -type f)
