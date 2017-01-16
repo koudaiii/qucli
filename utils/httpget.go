@@ -8,8 +8,8 @@ import (
 
 func HttpGet(url string, apitoken string) (string, error) {
 	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Set("Content-Type", "application/json")
 	if apitoken != "" {
-		req.Header.Set("Content-Type", "application/json")
 		req.Header.Set("Authorization", "Bearer "+apitoken)
 	}
 
