@@ -9,8 +9,8 @@ import (
 	"github.com/koudaiii/dockerepos/utils"
 )
 
-func GetRepository(namespace string, name string) (QuayRepository, error) {
-	var repos QuayRepository
+func GetRepository(namespace string, name string) (ResponseRepository, error) {
+	var repos ResponseRepository
 	u, err := url.Parse(QuayURLBase)
 	if err != nil {
 		return repos, err

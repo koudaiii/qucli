@@ -16,8 +16,13 @@ type QuayPermissionsResponse struct {
 }
 
 type QuayRepository struct {
+	Namespace string `json:"namespace"`
+	Name      string `json:"name"`
+}
+
+type ResponseRepository struct {
 	Namespace   string `json:"namespace"`
-	Visibility  string `json:"visibility"`
+	IsPublic    bool   `json:"is_public"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
 }
