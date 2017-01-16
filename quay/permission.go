@@ -9,7 +9,7 @@ import (
 	"github.com/koudaiii/dockerepos/utils"
 )
 
-func GetPermissions(namespace string, name string, account string) (QuayPermissions, error) {
+func GetPermissions(namespace string, name string, accountType string) (QuayPermissions, error) {
 	var resp QuayPermissionsResponse
 	var permissions QuayPermissions
 
@@ -18,7 +18,7 @@ func GetPermissions(namespace string, name string, account string) (QuayPermissi
 	if err != nil {
 		return permissions, err
 	}
-	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", account) + "/"
+	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType) + "/"
 
 	body, err := utils.HttpGet(u.String(), os.Getenv("QUAY_API_TOKEN"))
 	if err != nil {
