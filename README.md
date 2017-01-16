@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/koudaiii/dockerepos.svg?branch=master)](https://travis-ci.org/koudaiii/ddockerepos)
 [![Docker Repository on Quay](https://quay.io/repository/koudaiii/dockerepos/status "Docker Repository on Quay")](https://quay.io/repository/koudaiii/dockerepos)
-[![GitHub release](https://img.shields.io/github/release/koudaiii/dockerepos.svg)](https://github.com/koudaiii/ddockerepos/releases)
+[![GitHub release](https://img.shields.io/github/release/koudaiii/dockerepos.svg)](https://github.com/koudaiii/dockerepos/releases)
 
 ## Description
 
