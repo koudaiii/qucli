@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/koudaiii/dockerepos/quay"
-	flag "github.com/spf13/pflag"
 )
 
 type AddUserCommand struct {
@@ -18,13 +17,10 @@ type DeleteUserCommand struct {
 }
 
 func (c *AddUserCommand) Run(args []string) int {
-	flags := flag.NewFlagSet("dockerepos", flag.ExitOnError)
-
-	flags.Usage = func() {
-		flags.PrintDefaults()
+	if err := FlagInit(args); err != nil {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
 	}
-
-	flags.StringVar(&role, "role", "read", "role to use for the user =  ['read', 'write', 'admin']. default: read")
 
 	if len(args) < 2 {
 		fmt.Fprintln(os.Stderr, c.Help())

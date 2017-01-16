@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/koudaiii/dockerepos/quay"
-	flag "github.com/spf13/pflag"
 )
 
 type CreateCommand struct {
@@ -14,13 +13,10 @@ type CreateCommand struct {
 }
 
 func (c *CreateCommand) Run(args []string) int {
-	flags := flag.NewFlagSet("dockerepos", flag.ExitOnError)
-
-	flags.Usage = func() {
-		flags.PrintDefaults()
+	if err := FlagInit(args); err != nil {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
 	}
-
-	flags.StringVar(&visibility, "visibility", "public", "visibility set to 'public' or 'private'. default: public")
 
 	if len(args) < 1 {
 		fmt.Fprintln(os.Stderr, c.Help())
