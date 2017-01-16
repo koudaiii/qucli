@@ -1,10 +1,10 @@
 package utils
 
 import (
-"bytes"
-"fmt"
-"io/ioutil"
-"net/http"
+	"bytes"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 )
 
 func HttpPut(url string, apitoken string, body []byte) (string, error) {
