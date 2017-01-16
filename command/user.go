@@ -2,8 +2,8 @@ package command
 
 import (
 	"fmt"
-	"strings"
 	"os"
+	"strings"
 
 	"github.com/koudaiii/dockerepos/quay"
 	flag "github.com/spf13/pflag"
@@ -39,12 +39,12 @@ func (c *AddUserCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	repos, err := quay.AddPermission(ss[1], ss[2],"user",args[1],role)
+	repos, err := quay.AddPermission(ss[1], ss[2], "user", args[1], role)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Added! %v(%v) in quay.io/%v/%v\n", repos.Name, repos.Role,ss[1], ss[2])
+	fmt.Fprintf(os.Stdout, "Added! %v(%v) in quay.io/%v/%v\n", repos.Name, repos.Role, ss[1], ss[2])
 	return 0
 }
 

@@ -2,7 +2,11 @@ package command
 
 import (
 	"fmt"
+	"os"
 	"strings"
+
+	"github.com/koudaiii/dockerepos/quay"
+	flag "github.com/spf13/pflag"
 )
 
 type AddTeamCommand struct {
