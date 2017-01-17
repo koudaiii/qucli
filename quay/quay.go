@@ -15,6 +15,14 @@ type QuayPermissionsResponse struct {
 	Items map[string]interface{} `json:"permissions"`
 }
 
+type QuayRepositories struct {
+	Items []ResponseRepository
+}
+
+type ResponseRepositories struct {
+	Items []map[string]interface{} `json:"repositories"`
+}
+
 type QuayRepository struct {
 	Namespace string `json:"namespace"`
 	Name      string `json:"name"`
