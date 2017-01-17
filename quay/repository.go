@@ -4,10 +4,45 @@ import (
 	"encoding/json"
 	"net/url"
 	"os"
+	"strconv"
 	"path"
 
 	"github.com/koudaiii/dockerepos/utils"
 )
+
+func ListRepository(namespace string, public bool) (QuayRepositories, error) {
+	var repos ResponseRepositories
+	var repositories QuayRepositories
+	u, err := url.Parse(QuayURLBase)
+	if err != nil {
+		return repositories, err
+	}
+
+	values := url.Values{}
+	values.Set("public",strconv.FormatBool(public))
+	values.Add("namespace",namespace)
+
+	u.Path = path.Join(u.Path, "repository")
+
+	body, err := utils.HttpGet(u.String() + "?" + values.Encode(), os.Getenv("QUAY_API_TOKEN"))
+	if err != nil {
+		return repositories, err
+	}
+
+	if err := json.Unmarshal([]byte(body), &repos); err != nil {
+		return repositories, err
+	}
+
+	for _, item := range repos.Items {
+		repositories.Items = append(repositories.Items,
+			ResponseRepository{
+				Namespace: item["namespace"].(string),
+				Name: item["name"].(string),
+				IsPublic: item["is_public"].(bool),
+			})
+	}
+	return repositories, nil
+}
 
 func GetRepository(namespace string, name string) (ResponseRepository, error) {
 	var repos ResponseRepository
