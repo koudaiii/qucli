@@ -82,18 +82,9 @@ Available commands are:
     delete-team    Delete team in repository
     delete-user    Delete user in repository
     get            Get repository and Permissions in Quay
+    list           List repository and Permissions in Quay
     version        Print dockerepos version and quit
-```
 
-### `create`
-
-Create repository in Quay
-
-With `--visibility` option, you can `public` or `private`
-
-```bash
-$ dockerepos create quay.io/wantedly/test --visibility private
-Created! quay.io/wantedly/test
 ```
 
 ### `get`
@@ -108,6 +99,17 @@ Visibility:
 	private
 Permissions:
 	koudaiii(admin)
+```
+
+### `create`
+
+Create repository in Quay
+
+With `--visibility` option, you can `public` or `private`
+
+```bash
+$ dockerepos create quay.io/wantedly/test --visibility private
+Created! quay.io/wantedly/test
 ```
 
 ### `delete`
