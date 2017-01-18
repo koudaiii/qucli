@@ -87,6 +87,21 @@ Available commands are:
 
 ```
 
+### `list`
+
+List repository in namespace
+
+With `--is-public` option, you can `true` or `false`
+
+```bsah
+$ dockerepos list koudaiii
+NAME				isPublic	DESCRIPTION
+quay.io/koudaiii/apig-sample	true
+quay.io/koudaiii/dockerepos	true
+quay.io/koudaiii/kubeps		true
+quay.io/koudaiii/test		true
+```
+
 ### `get`
 
 Get repository and Permissions in Quay
