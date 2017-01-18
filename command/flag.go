@@ -17,9 +17,9 @@ func FlagInit(args []string) error {
 		flags.PrintDefaults()
 	}
 
-	flags.StringVar(&visibility, "visibility", "public", "visibility set to 'public' or 'private'. default: public")
-	flags.StringVar(&role, "role", "read", "role to use for the user =  ['read', 'write', 'admin']. default: read")
-	flags.BoolVar(&public, "public", true, "'true' or 'false'. default: false")
+	flags.StringVar(&visibility, "visibility", "public", "visibility set to 'public' or 'private'.")
+	flags.StringVar(&role, "role", "read", "role to use for the user =  ['read', 'write', 'admin'].")
+	flags.BoolVar(&public, "is-public", true, "'--is-public=true' or '--is-public=false'.")
 
 	if err := flags.Parse(args[0:]); err != nil {
 		return err
