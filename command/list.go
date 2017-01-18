@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"text/tabwriter"
 
 	"github.com/koudaiii/dockerepos/quay"
+	"strconv"
 )
 
 type ListCommand struct {
@@ -13,6 +15,8 @@ type ListCommand struct {
 }
 
 func (c *ListCommand) Run(args []string) int {
+	var repositoryColumns = []string{"NAME", "isPublic", "DESCRIPTION"}
+
 	if len(args) < 1 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
@@ -29,9 +33,17 @@ func (c *ListCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
+	repositoryPrint := new(tabwriter.Writer)
+	repositoryPrint.Init(os.Stdout, 0, 8, 1, '\t', 0)
+
+	fmt.Fprintln(repositoryPrint, strings.Join(repositoryColumns, "\t"))
+
 	for _, repos := range repositories.Items {
-		fmt.Fprintf(os.Stdout, "%v\tquay.io/%v/%v\n", repos.IsPublic, repos.Namespace, repos.Name)
+		fmt.Fprintln(repositoryPrint, strings.Join(
+			[]string{"quay.io/" + repos.Namespace + "/" + repos.Name, strconv.FormatBool(repos.IsPublic), repos.Description}, "\t",
+		))
 	}
+	repositoryPrint.Flush()
 	return 0
 }
 
