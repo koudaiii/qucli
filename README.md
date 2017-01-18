@@ -82,18 +82,24 @@ Available commands are:
     delete-team    Delete team in repository
     delete-user    Delete user in repository
     get            Get repository and Permissions in Quay
+    list           List repository and Permissions in Quay
     version        Print dockerepos version and quit
+
 ```
 
-### `create`
+### `list`
 
-Create repository in Quay
+List repository in namespace
 
-With `--visibility` option, you can `public` or `private`
+With `--is-public` option, you can `true` or `false`
 
-```bash
-$ dockerepos create quay.io/wantedly/test --visibility private
-Created! quay.io/wantedly/test
+```bsah
+$ dockerepos list koudaiii
+NAME				isPublic	DESCRIPTION
+quay.io/koudaiii/apig-sample	true
+quay.io/koudaiii/dockerepos	true
+quay.io/koudaiii/kubeps		true
+quay.io/koudaiii/test		true
 ```
 
 ### `get`
@@ -108,6 +114,35 @@ Visibility:
 	private
 Permissions:
 	koudaiii(admin)
+```
+
+### `create`
+
+Create repository in Quay
+
+With `--visibility` option, you can `public` or `private`
+
+```bash
+$ dockerepos create quay.io/wantedly/test --visibility private
+Created! quay.io/wantedly/test
+```
+
+### `delete`
+
+Delete repository in Quay
+
+```bash
+$ dockerepos delete quay.io/wantedly/test
+Deleted! quay.io/wantedly/test
+```
+
+```bash
+$ dockerepos get quay.io/wantedly/test
+err: HTTP error!
+URL: https://quay.io/api/v1/repository/wantedly/test
+status code: 404
+body:
+{"status": 404, "error_message": "Not Found", "title": "not_found", "error_type": "not_found", "detail": "Not Found", "type": "https://quay.io/api/v1/error/not_found"}
 ```
 
 ### `add-user`
@@ -194,30 +229,13 @@ Permissions:
 	koudaiii(admin)
 ```
 
-### `delete`
-
-Delete repository in Quay
-
-```bash
-$ dockerepos delete quay.io/wantedly/test
-Deleted! quay.io/wantedly/test
-```
-
-```bash
-$ dockerepos get quay.io/wantedly/test
-err: HTTP error!
-URL: https://quay.io/api/v1/repository/wantedly/test
-status code: 404
-body:
-{"status": 404, "error_message": "Not Found", "title": "not_found", "error_type": "not_found", "detail": "Not Found", "type": "https://quay.io/api/v1/error/not_found"}
-```
-
 ### Options
 
 |Option|Description|Required|Default|
 |---------|-----------|-------|-------|
 |`--visibility=VISIBILITY`| "visibility set to 'public' or 'private'||`public`|
-|`--role=ROLE`|role to use for the user or team=  ['read', 'write', 'admin']||`read`|
+|`--role=ROLE`|role to use for the user or team =  ['read', 'write', 'admin']||`read`|
+|`--is-public=bool`| repository type is public. `true` or `false`||`true`|
 |`--help`|Print command line usage|||
 |`-v`, `--version`|Print version|||
 
