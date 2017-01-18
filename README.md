@@ -110,6 +110,24 @@ Permissions:
 	koudaiii(admin)
 ```
 
+### `delete`
+
+Delete repository in Quay
+
+```bash
+$ dockerepos delete quay.io/wantedly/test
+Deleted! quay.io/wantedly/test
+```
+
+```bash
+$ dockerepos get quay.io/wantedly/test
+err: HTTP error!
+URL: https://quay.io/api/v1/repository/wantedly/test
+status code: 404
+body:
+{"status": 404, "error_message": "Not Found", "title": "not_found", "error_type": "not_found", "detail": "Not Found", "type": "https://quay.io/api/v1/error/not_found"}
+```
+
 ### `add-user`
 
 Add user in repository
@@ -194,30 +212,13 @@ Permissions:
 	koudaiii(admin)
 ```
 
-### `delete`
-
-Delete repository in Quay
-
-```bash
-$ dockerepos delete quay.io/wantedly/test
-Deleted! quay.io/wantedly/test
-```
-
-```bash
-$ dockerepos get quay.io/wantedly/test
-err: HTTP error!
-URL: https://quay.io/api/v1/repository/wantedly/test
-status code: 404
-body:
-{"status": 404, "error_message": "Not Found", "title": "not_found", "error_type": "not_found", "detail": "Not Found", "type": "https://quay.io/api/v1/error/not_found"}
-```
-
 ### Options
 
 |Option|Description|Required|Default|
 |---------|-----------|-------|-------|
 |`--visibility=VISIBILITY`| "visibility set to 'public' or 'private'||`public`|
-|`--role=ROLE`|role to use for the user or team=  ['read', 'write', 'admin']||`read`|
+|`--role=ROLE`|role to use for the user or team =  ['read', 'write', 'admin']||`read`|
+|`--is-public=bool`| repository type is public. `true` or `false`||`true`|
 |`--help`|Print command line usage|||
 |`-v`, `--version`|Print version|||
 
