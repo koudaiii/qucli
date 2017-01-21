@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/koudaiii/dockerepos/quay"
+	"github.com/koudaiii/qcli/quay"
 )
 
 type GetCommand struct {
@@ -68,9 +68,9 @@ func (c *GetCommand) Synopsis() string {
 
 func (c *GetCommand) Help() string {
 	helpText := `
-dockerepos supported only Quay.io
+qcli supported only Quay.io
 Usage: get
-  dockerepos get quay.io/koudaiii/dockerepos
+  qcli get quay.io/koudaiii/qcli
 `
 	return strings.TrimSpace(helpText)
 }

@@ -1,6 +1,6 @@
 package main
 
-const Name string = "dockerepos"
+const Name string = "qcli"
 
 // To set this from outside, use go build -ldflags "-X main.Version \"$(VERSION)\""
 var Version string

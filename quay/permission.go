@@ -6,7 +6,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/koudaiii/dockerepos/utils"
+	"github.com/koudaiii/qcli/utils"
 )
 
 func GetPermissions(namespace string, name string, accountType string) (QuayPermissions, error) {
