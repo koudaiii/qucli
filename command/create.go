@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/koudaiii/dockerepos/quay"
+	"github.com/koudaiii/qcli/quay"
 )
 
 type CreateCommand struct {
@@ -45,9 +45,9 @@ func (c *CreateCommand) Synopsis() string {
 
 func (c *CreateCommand) Help() string {
 	helpText := `
-dockerepos supported only Quay.io
+qcli supported only Quay.io
 Usage: create
-  dockerepos create quay.io/koudaiii/dockerepos --visibility private
+  qcli create quay.io/koudaiii/qcli --visibility private
 `
 	return strings.TrimSpace(helpText)
 }

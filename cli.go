@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/koudaiii/dockerepos/command"
+	"github.com/koudaiii/qcli/command"
 	"github.com/mitchellh/cli"
 )
 

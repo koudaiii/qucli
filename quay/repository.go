@@ -7,7 +7,7 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/koudaiii/dockerepos/utils"
+	"github.com/koudaiii/qcli/utils"
 )
 
 func ListRepository(namespace string, public bool) (QuayRepositories, error) {

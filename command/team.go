@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/koudaiii/dockerepos/quay"
+	"github.com/koudaiii/qcli/quay"
 )
 
 type AddTeamCommand struct {
@@ -48,9 +48,9 @@ func (c *AddTeamCommand) Synopsis() string {
 
 func (c *AddTeamCommand) Help() string {
 	helpText := `
-dockerepos supported only Quay.io
+qcli supported only Quay.io
 Usage: add-team
-  dockerepos add-user quay.io/koudaiii/dockerepos infrastructure --role admin
+  qcli add-user quay.io/koudaiii/qcli infrastructure --role admin
 `
 	return strings.TrimSpace(helpText)
 }
@@ -82,9 +82,9 @@ func (c *DeleteTeamCommand) Synopsis() string {
 
 func (c *DeleteTeamCommand) Help() string {
 	helpText := `
-dockerepos supported only Quay.io
+qcli supported only Quay.io
 Usage: delete-team
-  dockerepos delete-team quay.io/koudaiii/dockerepos infrastructure
+  qcli delete-team quay.io/koudaiii/qcli infrastructure
 `
 	return strings.TrimSpace(helpText)
 }

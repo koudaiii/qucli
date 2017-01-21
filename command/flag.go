@@ -11,7 +11,7 @@ var (
 )
 
 func FlagInit(args []string) error {
-	flags := flag.NewFlagSet("dockerepos", flag.ExitOnError)
+	flags := flag.NewFlagSet("qcli", flag.ExitOnError)
 
 	flags.Usage = func() {
 		flags.PrintDefaults()

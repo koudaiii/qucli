@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/koudaiii/dockerepos/command"
+	"github.com/koudaiii/qcli/command"
 	"github.com/mitchellh/cli"
 )
 

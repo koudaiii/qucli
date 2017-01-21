@@ -6,7 +6,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/koudaiii/dockerepos/quay"
+	"github.com/koudaiii/qcli/quay"
 	"strconv"
 )
 
@@ -53,9 +53,9 @@ func (c *ListCommand) Synopsis() string {
 
 func (c *ListCommand) Help() string {
 	helpText := `
-dockerepos supported only Quay.io
+qcli supported only Quay.io
 Usage: list
-  dockerepos list
+  qcli list
 `
 	return strings.TrimSpace(helpText)
 }

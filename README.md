@@ -1,8 +1,8 @@
-# dockerepos
+# qcli
 
-[![Build Status](https://travis-ci.org/koudaiii/dockerepos.svg?branch=master)](https://travis-ci.org/koudaiii/ddockerepos)
-[![Docker Repository on Quay](https://quay.io/repository/koudaiii/dockerepos/status "Docker Repository on Quay")](https://quay.io/repository/koudaiii/dockerepos)
-[![GitHub release](https://img.shields.io/github/release/koudaiii/dockerepos.svg)](https://github.com/koudaiii/dockerepos/releases)
+[![Build Status](https://travis-ci.org/koudaiii/qcli.svg?branch=master)](https://travis-ci.org/koudaiii/dqcli)
+[![Docker Repository on Quay](https://quay.io/repository/koudaiii/qcli/status "Docker Repository on Quay")](https://quay.io/repository/koudaiii/qcli)
+[![GitHub release](https://img.shields.io/github/release/koudaiii/qcli.svg)](https://github.com/koudaiii/qcli/releases)
 
 ## Description
 
@@ -39,26 +39,26 @@ Formula is available at [koudaiii/homebrew-tools](https://github.com/koudaiii/ho
 
 ```bash
 $ brew tap koudaiii/tools
-$ brew install dockerepos
+$ brew install qcli
 ```
 
 ### Precompiled binary
 
-Precompiled binaries for Windows, OS X, Linux are available at [Releases](https://github.com/koudaiii/dockerepos/releases).
+Precompiled binaries for Windows, OS X, Linux are available at [Releases](https://github.com/koudaiii/qcli/releases).
 
 ### From source
 To install, use `go get`:
 
 ```bash
-$ go get -d github.com/koudaiii/dockerepos
-$ cd $GOPATH/src/github.com/koudaiii/dockerepos
+$ go get -d github.com/koudaiii/qcli
+$ cd $GOPATH/src/github.com/koudaiii/qcli
 $ make deps
 $ make install
 ```
 
 ### Run in a Docker container
 
-docker image is available at [quay.io/koudaiii/dockerepos](https://quay.io/repository/koudaiii/dockerepos).
+docker image is available at [quay.io/koudaiii/qcli](https://quay.io/repository/koudaiii/qcli).
 
 ```bash
 # -t is required to colorize logs
@@ -66,13 +66,13 @@ $ docker run \
     --rm \
     -t \
     -e QUAY_API_TOKEN=foobar \
-    quay.io/koudaiii/dockerepos:latest
+    quay.io/koudaiii/qcli:latest
 ```
 
 ## Usage
 
 ```bash
-usage: dockerepos [--version] [--help] <command> [<args>]
+usage: qcli [--version] [--help] <command> [<args>]
 
 Available commands are:
     add-team       Add team in repository
@@ -83,7 +83,7 @@ Available commands are:
     delete-user    Delete user in repository
     get            Get repository and Permissions in Quay
     list           List repository and Permissions in Quay
-    version        Print dockerepos version and quit
+    version        Print qcli version and quit
 
 ```
 
@@ -94,10 +94,10 @@ List repository in namespace
 With `--is-public` option, you can `true` or `false`
 
 ```bsah
-$ dockerepos list koudaiii
+$ qcli list koudaiii
 NAME				isPublic	DESCRIPTION
 quay.io/koudaiii/apig-sample	true
-quay.io/koudaiii/dockerepos	true
+quay.io/koudaiii/qcli	true
 quay.io/koudaiii/kubeps		true
 quay.io/koudaiii/test		true
 ```
@@ -107,7 +107,7 @@ quay.io/koudaiii/test		true
 Get repository and Permissions in Quay
 
 ```bash
-$ dockerepos get quay.io/wantedly/test
+$ qcli get quay.io/wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -123,7 +123,7 @@ Create repository in Quay
 With `--visibility` option, you can `public` or `private`
 
 ```bash
-$ dockerepos create quay.io/wantedly/test --visibility private
+$ qcli create quay.io/wantedly/test --visibility private
 Created! quay.io/wantedly/test
 ```
 
@@ -132,12 +132,12 @@ Created! quay.io/wantedly/test
 Delete repository in Quay
 
 ```bash
-$ dockerepos delete quay.io/wantedly/test
+$ qcli delete quay.io/wantedly/test
 Deleted! quay.io/wantedly/test
 ```
 
 ```bash
-$ dockerepos get quay.io/wantedly/test
+$ qcli get quay.io/wantedly/test
 err: HTTP error!
 URL: https://quay.io/api/v1/repository/wantedly/test
 status code: 404
@@ -152,12 +152,12 @@ Add user in repository
 With `--role` option, you can `read` or `write` or `admin`
 
 ```bash
-$ dockerepos add-user quay.io/wantedly/test dtan4 --role write
+$ qcli add-user quay.io/wantedly/test dtan4 --role write
 Added! dtan4(write) in quay.io/wantedly/test
 ```
 
 ```bash
-$ dockerepos get quay.io/wantedly/test
+$ qcli get quay.io/wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -174,12 +174,12 @@ Add team in repository
 With `--role` option, you can `read` or `write` or `admin`
 
 ```bash
-$ dockerepos add-team quay.io/wantedly/test infrastructure --role write
+$ qcli add-team quay.io/wantedly/test infrastructure --role write
 Added! infrastructure(write) in quay.io/wantedly/test
 ```
 
 ```bash
-$ dockerepos get quay.io/wantedly/test
+$ qcli get quay.io/wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -195,12 +195,12 @@ Permissions:
 Delete user from repository
 
 ```bash
-$ dockerepos delete-user quay.io/wantedly/test dtan4
+$ qcli delete-user quay.io/wantedly/test dtan4
 Deleted! dtan4 in quay.io/wantedly/test
 ```
 
 ```bash
-$ dockerepos get quay.io/wantedly/test
+$ qcli get quay.io/wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -215,12 +215,12 @@ Permissions:
 Delete team from repository
 
 ```bash
-$ dockerepos delete-team quay.io/wantedly/test infrastructure
+$ qcli delete-team quay.io/wantedly/test infrastructure
 Deleted! infrastructure in quay.io/wantedly/test
 ```
 
 ```bash
-$ dockerepos get quay.io/wantedly/test
+$ qcli get quay.io/wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -244,14 +244,14 @@ Permissions:
 Clone this repository and build using `make`.
 
 ```bash
-$ go get -d github.com/koudaiii/dockerepos
-$ cd $GOPATH/src/github.com/koudaiii/dockerepos
+$ go get -d github.com/koudaiii/qcli
+$ cd $GOPATH/src/github.com/koudaiii/qcli
 $ make
 ```
 
 ## Contribution
 
-1. Fork ([https://github.com/koudaiii/dockerepos/fork](https://github.com/koudaiii/dockerepos/fork))
+1. Fork ([https://github.com/koudaiii/qcli/fork](https://github.com/koudaiii/qcli/fork))
 1. Create a feature branch
 1. Commit your changes
 1. Rebase your local changes against the master branch
