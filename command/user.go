@@ -28,17 +28,17 @@ func (c *AddUserCommand) Run(args []string) int {
 	}
 
 	ss := strings.Split(args[0], "/")
-	if len(ss) != 3 {
+	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	repos, err := quay.AddPermission(ss[1], ss[2], "user", args[1], role)
+	repos, err := quay.AddPermission(ss[0], ss[1], "user", args[1], role)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Added! %v(%v) in quay.io/%v/%v\n", repos.Name, repos.Role, ss[1], ss[2])
+	fmt.Fprintf(os.Stdout, "Added! %v(%v) in quay.io/%v/%v\n", repos.Name, repos.Role, ss[0], ss[1])
 	return 0
 }
 
@@ -62,17 +62,17 @@ func (c *DeleteUserCommand) Run(args []string) int {
 	}
 
 	ss := strings.Split(args[0], "/")
-	if len(ss) != 3 {
+	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	err := quay.DeletePermission(ss[1], ss[2], "user", args[1])
+	err := quay.DeletePermission(ss[0], ss[1], "user", args[1])
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Deleted! %v in quay.io/%v/%v\n", args[1], ss[1], ss[2])
+	fmt.Fprintf(os.Stdout, "Deleted! %v in quay.io/%v/%v\n", args[1], ss[0], ss[1])
 	return 0
 }
 
