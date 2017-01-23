@@ -70,7 +70,7 @@ func (c *GetCommand) Help() string {
 	helpText := `
 qcli supported only Quay.io
 Usage: get
-  qcli get quay.io/koudaiii/qcli
+  qcli get koudaiii/qcli
 `
 	return strings.TrimSpace(helpText)
 }

@@ -47,7 +47,7 @@ func (c *CreateCommand) Help() string {
 	helpText := `
 qcli supported only Quay.io
 Usage: create
-  qcli create quay.io/koudaiii/qcli --visibility private
+  qcli create koudaiii/qcli --visibility private
 `
 	return strings.TrimSpace(helpText)
 }

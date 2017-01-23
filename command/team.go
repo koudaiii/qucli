@@ -50,7 +50,7 @@ func (c *AddTeamCommand) Help() string {
 	helpText := `
 qcli supported only Quay.io
 Usage: add-team
-  qcli add-user quay.io/koudaiii/qcli infrastructure --role admin
+  qcli add-user koudaiii/qcli infrastructure --role admin
 `
 	return strings.TrimSpace(helpText)
 }
@@ -84,7 +84,7 @@ func (c *DeleteTeamCommand) Help() string {
 	helpText := `
 qcli supported only Quay.io
 Usage: delete-team
-  qcli delete-team quay.io/koudaiii/qcli infrastructure
+  qcli delete-team koudaiii/qcli infrastructure
 `
 	return strings.TrimSpace(helpText)
 }

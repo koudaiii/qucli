@@ -41,7 +41,7 @@ func (c *DeleteCommand) Help() string {
 	helpText := `
 qcli supported only Quay.io
 Usage: delete
-  qcli delete quay.io/koudaiii/qcli
+  qcli delete koudaiii/qcli
 `
 	return strings.TrimSpace(helpText)
 }
