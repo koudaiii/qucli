@@ -24,12 +24,12 @@ func (c *CreateCommand) Run(args []string) int {
 	}
 
 	ss := strings.Split(args[0], "/")
-	if len(ss) != 3 {
+	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	repos, err := quay.CreateRepository(ss[1], ss[2], visibility)
+	repos, err := quay.CreateRepository(ss[0], ss[1], visibility)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
@@ -47,7 +47,7 @@ func (c *CreateCommand) Help() string {
 	helpText := `
 qcli supported only Quay.io
 Usage: create
-  qcli create quay.io/koudaiii/qcli --visibility private
+  qcli create koudaiii/qcli --visibility private
 `
 	return strings.TrimSpace(helpText)
 }

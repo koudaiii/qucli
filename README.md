@@ -107,7 +107,7 @@ quay.io/koudaiii/test		true
 Get repository and Permissions in Quay
 
 ```bash
-$ qcli get quay.io/wantedly/test
+$ qcli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -123,7 +123,7 @@ Create repository in Quay
 With `--visibility` option, you can `public` or `private`
 
 ```bash
-$ qcli create quay.io/wantedly/test --visibility private
+$ qcli create wantedly/test --visibility private
 Created! quay.io/wantedly/test
 ```
 
@@ -132,12 +132,12 @@ Created! quay.io/wantedly/test
 Delete repository in Quay
 
 ```bash
-$ qcli delete quay.io/wantedly/test
+$ qcli delete wantedly/test
 Deleted! quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get quay.io/wantedly/test
+$ qcli get wantedly/test
 err: HTTP error!
 URL: https://quay.io/api/v1/repository/wantedly/test
 status code: 404
@@ -152,12 +152,12 @@ Add user in repository
 With `--role` option, you can `read` or `write` or `admin`
 
 ```bash
-$ qcli add-user quay.io/wantedly/test dtan4 --role write
+$ qcli add-user wantedly/test dtan4 --role write
 Added! dtan4(write) in quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get quay.io/wantedly/test
+$ qcli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -174,12 +174,12 @@ Add team in repository
 With `--role` option, you can `read` or `write` or `admin`
 
 ```bash
-$ qcli add-team quay.io/wantedly/test infrastructure --role write
+$ qcli add-team wantedly/test infrastructure --role write
 Added! infrastructure(write) in quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get quay.io/wantedly/test
+$ qcli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -195,12 +195,12 @@ Permissions:
 Delete user from repository
 
 ```bash
-$ qcli delete-user quay.io/wantedly/test dtan4
+$ qcli delete-user wantedly/test dtan4
 Deleted! dtan4 in quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get quay.io/wantedly/test
+$ qcli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -215,12 +215,12 @@ Permissions:
 Delete team from repository
 
 ```bash
-$ qcli delete-team quay.io/wantedly/test infrastructure
+$ qcli delete-team wantedly/test infrastructure
 Deleted! infrastructure in quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get quay.io/wantedly/test
+$ qcli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
