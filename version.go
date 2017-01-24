@@ -1,6 +1,6 @@
 package main
 
-const Name string = "qcli"
+const Name string = "qucli"
 
 // To set this from outside, use go build -ldflags "-X main.Version \"$(VERSION)\""
 var Version string

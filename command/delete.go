@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/koudaiii/qcli/quay"
+	"github.com/koudaiii/qucli/quay"
 )
 
 type DeleteCommand struct {
@@ -39,9 +39,9 @@ func (c *DeleteCommand) Synopsis() string {
 
 func (c *DeleteCommand) Help() string {
 	helpText := `
-qcli supported only Quay.io
+qucli supported only Quay.io
 Usage: delete
-  qcli delete koudaiii/qcli
+  qucli delete koudaiii/qucli
 `
 	return strings.TrimSpace(helpText)
 }

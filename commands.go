@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/koudaiii/qcli/command"
+	"github.com/koudaiii/qucli/command"
 	"github.com/mitchellh/cli"
 )
 
