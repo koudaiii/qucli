@@ -1,8 +1,8 @@
-# qcli
+# qucli
 
-[![Build Status](https://travis-ci.org/koudaiii/qcli.svg?branch=master)](https://travis-ci.org/koudaiii/dqcli)
-[![Docker Repository on Quay](https://quay.io/repository/koudaiii/qcli/status "Docker Repository on Quay")](https://quay.io/repository/koudaiii/qcli)
-[![GitHub release](https://img.shields.io/github/release/koudaiii/qcli.svg)](https://github.com/koudaiii/qcli/releases)
+[![Build Status](https://travis-ci.org/koudaiii/qucli.svg?branch=master)](https://travis-ci.org/koudaiii/dqucli)
+[![Docker Repository on Quay](https://quay.io/repository/koudaiii/qucli/status "Docker Repository on Quay")](https://quay.io/repository/koudaiii/qucli)
+[![GitHub release](https://img.shields.io/github/release/koudaiii/qucli.svg)](https://github.com/koudaiii/qucli/releases)
 
 ## Description
 
@@ -39,26 +39,26 @@ Formula is available at [koudaiii/homebrew-tools](https://github.com/koudaiii/ho
 
 ```bash
 $ brew tap koudaiii/tools
-$ brew install qcli
+$ brew install qucli
 ```
 
 ### Precompiled binary
 
-Precompiled binaries for Windows, OS X, Linux are available at [Releases](https://github.com/koudaiii/qcli/releases).
+Precompiled binaries for Windows, OS X, Linux are available at [Releases](https://github.com/koudaiii/qucli/releases).
 
 ### From source
 To install, use `go get`:
 
 ```bash
-$ go get -d github.com/koudaiii/qcli
-$ cd $GOPATH/src/github.com/koudaiii/qcli
+$ go get -d github.com/koudaiii/qucli
+$ cd $GOPATH/src/github.com/koudaiii/qucli
 $ make deps
 $ make install
 ```
 
 ### Run in a Docker container
 
-docker image is available at [quay.io/koudaiii/qcli](https://quay.io/repository/koudaiii/qcli).
+docker image is available at [quay.io/koudaiii/qucli](https://quay.io/repository/koudaiii/qucli).
 
 ```bash
 # -t is required to colorize logs
@@ -66,13 +66,13 @@ $ docker run \
     --rm \
     -t \
     -e QUAY_API_TOKEN=foobar \
-    quay.io/koudaiii/qcli:latest
+    quay.io/koudaiii/qucli:latest
 ```
 
 ## Usage
 
 ```bash
-usage: qcli [--version] [--help] <command> [<args>]
+usage: qucli [--version] [--help] <command> [<args>]
 
 Available commands are:
     add-team       Add team in repository
@@ -83,7 +83,7 @@ Available commands are:
     delete-user    Delete user in repository
     get            Get repository and Permissions in Quay
     list           List repository and Permissions in Quay
-    version        Print qcli version and quit
+    version        Print qucli version and quit
 
 ```
 
@@ -94,10 +94,10 @@ List repository in namespace
 With `--is-public` option, you can `true` or `false`
 
 ```bsah
-$ qcli list koudaiii
+$ qucli list koudaiii
 NAME				isPublic	DESCRIPTION
 quay.io/koudaiii/apig-sample	true
-quay.io/koudaiii/qcli	true
+quay.io/koudaiii/qucli	true
 quay.io/koudaiii/kubeps		true
 quay.io/koudaiii/test		true
 ```
@@ -107,7 +107,7 @@ quay.io/koudaiii/test		true
 Get repository and Permissions in Quay
 
 ```bash
-$ qcli get wantedly/test
+$ qucli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -123,7 +123,7 @@ Create repository in Quay
 With `--visibility` option, you can `public` or `private`
 
 ```bash
-$ qcli create wantedly/test --visibility private
+$ qucli create wantedly/test --visibility private
 Created! quay.io/wantedly/test
 ```
 
@@ -132,12 +132,12 @@ Created! quay.io/wantedly/test
 Delete repository in Quay
 
 ```bash
-$ qcli delete wantedly/test
+$ qucli delete wantedly/test
 Deleted! quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get wantedly/test
+$ qucli get wantedly/test
 err: HTTP error!
 URL: https://quay.io/api/v1/repository/wantedly/test
 status code: 404
@@ -152,12 +152,12 @@ Add user in repository
 With `--role` option, you can `read` or `write` or `admin`
 
 ```bash
-$ qcli add-user wantedly/test dtan4 --role write
+$ qucli add-user wantedly/test dtan4 --role write
 Added! dtan4(write) in quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get wantedly/test
+$ qucli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -174,12 +174,12 @@ Add team in repository
 With `--role` option, you can `read` or `write` or `admin`
 
 ```bash
-$ qcli add-team wantedly/test infrastructure --role write
+$ qucli add-team wantedly/test infrastructure --role write
 Added! infrastructure(write) in quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get wantedly/test
+$ qucli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -195,12 +195,12 @@ Permissions:
 Delete user from repository
 
 ```bash
-$ qcli delete-user wantedly/test dtan4
+$ qucli delete-user wantedly/test dtan4
 Deleted! dtan4 in quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get wantedly/test
+$ qucli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -215,12 +215,12 @@ Permissions:
 Delete team from repository
 
 ```bash
-$ qcli delete-team wantedly/test infrastructure
+$ qucli delete-team wantedly/test infrastructure
 Deleted! infrastructure in quay.io/wantedly/test
 ```
 
 ```bash
-$ qcli get wantedly/test
+$ qucli get wantedly/test
 Repository:
 	quay.io/wantedly/test
 Visibility:
@@ -244,14 +244,14 @@ Permissions:
 Clone this repository and build using `make`.
 
 ```bash
-$ go get -d github.com/koudaiii/qcli
-$ cd $GOPATH/src/github.com/koudaiii/qcli
+$ go get -d github.com/koudaiii/qucli
+$ cd $GOPATH/src/github.com/koudaiii/qucli
 $ make
 ```
 
 ## Contribution
 
-1. Fork ([https://github.com/koudaiii/qcli/fork](https://github.com/koudaiii/qcli/fork))
+1. Fork ([https://github.com/koudaiii/qucli/fork](https://github.com/koudaiii/qucli/fork))
 1. Create a feature branch
 1. Commit your changes
 1. Rebase your local changes against the master branch

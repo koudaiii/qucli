@@ -11,7 +11,7 @@ var (
 )
 
 func FlagInit(args []string) error {
-	flags := flag.NewFlagSet("qcli", flag.ExitOnError)
+	flags := flag.NewFlagSet("qucli", flag.ExitOnError)
 
 	flags.Usage = func() {
 		flags.PrintDefaults()

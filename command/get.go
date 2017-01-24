@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/koudaiii/qcli/quay"
+	"github.com/koudaiii/qucli/quay"
 )
 
 type GetCommand struct {
@@ -68,9 +68,9 @@ func (c *GetCommand) Synopsis() string {
 
 func (c *GetCommand) Help() string {
 	helpText := `
-qcli supported only Quay.io
+qucli supported only Quay.io
 Usage: get
-  qcli get koudaiii/qcli
+  qucli get koudaiii/qucli
 `
 	return strings.TrimSpace(helpText)
 }

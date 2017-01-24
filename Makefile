@@ -1,4 +1,4 @@
-NAME      := qcli
+NAME      := qucli
 VERSION   := v0.3.0
 REVISION  := $(shell git rev-parse --short HEAD)
 
@@ -8,7 +8,7 @@ LDFLAGS   := -ldflags="-s -w -X \"main.Version=$(VERSION)\" -X \"main.GitCommit=
 DIST_DIRS := find * -type d -exec
 
 DOCKER_REPOSITORY := quay.io
-DOCKER_IMAGE_NAME := $(DOCKER_REPOSITORY)/koudaiii/qcli
+DOCKER_IMAGE_NAME := $(DOCKER_REPOSITORY)/koudaiii/qucli
 DOCKER_IMAGE_TAG  ?= latest
 DOCKER_IMAGE      := $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 
