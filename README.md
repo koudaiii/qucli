@@ -6,7 +6,7 @@
 
 ## Description
 
-Manage repository in Quay
+Manage repositories in Quay.io
 
 ## Table of Contents
 
