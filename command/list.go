@@ -6,8 +6,9 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/koudaiii/qucli/quay"
 	"strconv"
+
+	"github.com/koudaiii/qucli/quay"
 )
 
 type ListCommand struct {
@@ -40,7 +41,7 @@ func (c *ListCommand) Run(args []string) int {
 
 	for _, repos := range repositories.Items {
 		fmt.Fprintln(repositoryPrint, strings.Join(
-			[]string{"quay.io/" + repos.Namespace + "/" + repos.Name, strconv.FormatBool(repos.IsPublic), repos.Description}, "\t",
+			[]string{hostname + "/" + repos.Namespace + "/" + repos.Name, strconv.FormatBool(repos.IsPublic), repos.Description}, "\t",
 		))
 	}
 	repositoryPrint.Flush()

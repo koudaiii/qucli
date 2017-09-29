@@ -29,7 +29,7 @@ func (c *DeleteCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Deleted! quay.io/%v/%v\n", ss[0], ss[1])
+	fmt.Fprintf(os.Stdout, "Deleted! %v/%v/%v\n", hostname, ss[0], ss[1])
 	return 0
 }
 

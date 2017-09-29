@@ -31,7 +31,7 @@ func (c *GetCommand) Run(args []string) int {
 	}
 
 	fmt.Fprintln(os.Stdout, "Repository:")
-	fmt.Fprintf(os.Stdout, "\tquay.io/%v/%v\n", repos.Namespace, repos.Name)
+	fmt.Fprintf(os.Stdout, "\t%v/%v/%v\n", hostname, repos.Namespace, repos.Name)
 
 	fmt.Fprintln(os.Stdout, "Visibility:")
 	if repos.IsPublic == true {

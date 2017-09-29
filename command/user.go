@@ -38,7 +38,7 @@ func (c *AddUserCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Added! %v(%v) in quay.io/%v/%v\n", repos.Name, repos.Role, ss[0], ss[1])
+	fmt.Fprintf(os.Stdout, "Added! %v(%v) in %v/%v/%v\n", repos.Name, repos.Role, hostname, ss[0], ss[1])
 	return 0
 }
 
@@ -72,7 +72,7 @@ func (c *DeleteUserCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Deleted! %v in quay.io/%v/%v\n", args[1], ss[0], ss[1])
+	fmt.Fprintf(os.Stdout, "Deleted! %v in %v/%v/%v\n", args[1], hostname, ss[0], ss[1])
 	return 0
 }
 

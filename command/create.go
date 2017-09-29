@@ -34,7 +34,7 @@ func (c *CreateCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Created! quay.io/%v/%v\n", repos.Namespace, repos.Name)
+	fmt.Fprintf(os.Stdout, "Created! %v/%v/%v\n", hostname, repos.Namespace, repos.Name)
 
 	return 0
 }
