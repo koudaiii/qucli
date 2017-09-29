@@ -24,7 +24,7 @@ func (c *GetCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	repos, err := quay.GetRepository(ss[0], ss[1])
+	repos, err := quay.GetRepository(ss[0], ss[1], hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
@@ -41,7 +41,7 @@ func (c *GetCommand) Run(args []string) int {
 	}
 	fmt.Fprintln(os.Stdout, "Permissions:")
 
-	permissions, err := quay.GetPermissions(ss[0], ss[1], "user")
+	permissions, err := quay.GetPermissions(ss[0], ss[1], "user", hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
@@ -50,7 +50,7 @@ func (c *GetCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stdout, "\t%v(%v)\n", p.Name, p.Role)
 	}
 
-	permissions, err = quay.GetPermissions(ss[0], ss[1], "team")
+	permissions, err = quay.GetPermissions(ss[0], ss[1], "team", hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)

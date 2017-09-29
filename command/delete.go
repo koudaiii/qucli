@@ -24,7 +24,7 @@ func (c *DeleteCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	err := quay.DeleteRepository(ss[0], ss[1])
+	err := quay.DeleteRepository(ss[0], ss[1], hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)

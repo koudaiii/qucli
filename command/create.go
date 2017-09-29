@@ -29,7 +29,7 @@ func (c *CreateCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	repos, err := quay.CreateRepository(ss[0], ss[1], visibility)
+	repos, err := quay.CreateRepository(ss[0], ss[1], visibility, hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)

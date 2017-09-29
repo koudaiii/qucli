@@ -33,7 +33,7 @@ func (c *AddTeamCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	repos, err := quay.AddPermission(ss[0], ss[1], "team", args[1], role)
+	repos, err := quay.AddPermission(ss[0], ss[1], "team", args[1], role, hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
@@ -67,7 +67,7 @@ func (c *DeleteTeamCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	err := quay.DeletePermission(ss[0], ss[1], "team", args[1])
+	err := quay.DeletePermission(ss[0], ss[1], "team", args[1], hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)

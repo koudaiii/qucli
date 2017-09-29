@@ -27,7 +27,7 @@ func (c *ListCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	repositories, err := quay.ListRepository(args[0], public)
+	repositories, err := quay.ListRepository(args[0], public, hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
