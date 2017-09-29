@@ -2,22 +2,17 @@ package quay
 
 import (
 	"encoding/json"
-	"net/url"
 	"os"
 	"path"
 
 	"github.com/koudaiii/qucli/utils"
 )
 
-func GetPermissions(namespace string, name string, accountType string) (QuayPermissions, error) {
+func GetPermissions(namespace string, name string, accountType string, hostname string) (QuayPermissions, error) {
 	var resp QuayPermissionsResponse
 	var permissions QuayPermissions
 
-	u, err := url.Parse(QuayURLBase)
-
-	if err != nil {
-		return permissions, err
-	}
+	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType) + "/"
 
 	body, err := utils.HttpGet(u.String(), os.Getenv("QUAY_API_TOKEN"))
@@ -37,14 +32,11 @@ func GetPermissions(namespace string, name string, accountType string) (QuayPerm
 	return permissions, nil
 }
 
-func DeletePermission(namespace string, name string, accountType string, account string) error {
-	u, err := url.Parse(QuayURLBase)
-	if err != nil {
-		return err
-	}
+func DeletePermission(namespace string, name string, accountType string, account string, hostname string) error {
+	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType, account)
 
-	_, err = utils.HttpDelete(u.String(), os.Getenv("QUAY_API_TOKEN"))
+	_, err := utils.HttpDelete(u.String(), os.Getenv("QUAY_API_TOKEN"))
 	if err != nil {
 		return err
 	}
@@ -52,17 +44,14 @@ func DeletePermission(namespace string, name string, accountType string, account
 	return nil
 }
 
-func AddPermission(namespace string, name string, accountType string, account string, role string) (QuayPermission, error) {
+func AddPermission(namespace string, name string, accountType string, account string, role string, hostname string) (QuayPermission, error) {
 	var repos QuayPermission
 	var permission QuayPermission
 	req, err := json.Marshal(QuayPermission{
 		Role: role,
 	})
 
-	u, err := url.Parse(QuayURLBase)
-	if err != nil {
-		return permission, err
-	}
+	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType, account)
 
 	body, err := utils.HttpPut(u.String(), os.Getenv("QUAY_API_TOKEN"), req)

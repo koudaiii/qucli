@@ -10,13 +10,10 @@ import (
 	"github.com/koudaiii/qucli/utils"
 )
 
-func ListRepository(namespace string, public bool) (QuayRepositories, error) {
+func ListRepository(namespace string, public bool, hostname string) (QuayRepositories, error) {
 	var repos ResponseRepositories
 	var repositories QuayRepositories
-	u, err := url.Parse(QuayURLBase)
-	if err != nil {
-		return repositories, err
-	}
+	u := QuayURLParse(hostname)
 
 	values := url.Values{}
 	values.Set("public", strconv.FormatBool(public))
@@ -44,12 +41,9 @@ func ListRepository(namespace string, public bool) (QuayRepositories, error) {
 	return repositories, nil
 }
 
-func GetRepository(namespace string, name string) (ResponseRepository, error) {
+func GetRepository(namespace string, name string, hostname string) (ResponseRepository, error) {
 	var repos ResponseRepository
-	u, err := url.Parse(QuayURLBase)
-	if err != nil {
-		return repos, err
-	}
+	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name)
 
 	body, err := utils.HttpGet(u.String(), os.Getenv("QUAY_API_TOKEN"))
@@ -64,14 +58,11 @@ func GetRepository(namespace string, name string) (ResponseRepository, error) {
 	return repos, nil
 }
 
-func DeleteRepository(namespace string, name string) error {
-	u, err := url.Parse(QuayURLBase)
-	if err != nil {
-		return err
-	}
+func DeleteRepository(namespace string, name string, hostname string) error {
+	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name)
 
-	_, err = utils.HttpDelete(u.String(), os.Getenv("QUAY_API_TOKEN"))
+	_, err := utils.HttpDelete(u.String(), os.Getenv("QUAY_API_TOKEN"))
 	if err != nil {
 		return err
 	}
@@ -79,7 +70,7 @@ func DeleteRepository(namespace string, name string) error {
 	return nil
 }
 
-func CreateRepository(namespace string, name string, visibility string) (QuayRepository, error) {
+func CreateRepository(namespace string, name string, visibility string, hostname string) (QuayRepository, error) {
 	var repos QuayRepository
 	req, err := json.Marshal(RequestRepository{
 		Namespace:  namespace,
@@ -87,10 +78,7 @@ func CreateRepository(namespace string, name string, visibility string) (QuayRep
 		Visibility: visibility,
 	})
 
-	u, err := url.Parse(QuayURLBase)
-	if err != nil {
-		return repos, err
-	}
+	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository")
 
 	body, err := utils.HttpPost(u.String(), os.Getenv("QUAY_API_TOKEN"), req)
