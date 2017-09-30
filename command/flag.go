@@ -5,10 +5,11 @@ import (
 )
 
 var (
-	role       string
-	visibility string
-	public     bool
-	hostname   string
+	subcommandArgs []string
+	role           string
+	visibility     string
+	public         bool
+	hostname       string
 )
 
 func FlagInit(args []string) error {
@@ -26,5 +27,6 @@ func FlagInit(args []string) error {
 	if err := flags.Parse(args[0:]); err != nil {
 		return err
 	}
+	subcommandArgs = flags.Args()
 	return nil
 }
