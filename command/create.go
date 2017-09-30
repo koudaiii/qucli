@@ -18,12 +18,12 @@ func (c *CreateCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	if len(args) < 1 {
+	if len(subcommandArgs) < 1 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	ss := strings.Split(args[0], "/")
+	ss := strings.Split(subcommandArgs[0], "/")
 	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
