@@ -13,25 +13,30 @@ type GetCommand struct {
 }
 
 func (c *GetCommand) Run(args []string) int {
-	if len(args) != 1 {
+	if err := FlagInit(args); err != nil {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	ss := strings.Split(args[0], "/")
+	if len(subcommandArgs) != 1 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	ss := strings.Split(subcommandArgs[0], "/")
 	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	repos, err := quay.GetRepository(ss[0], ss[1])
+	repos, err := quay.GetRepository(ss[0], ss[1], hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
 
 	fmt.Fprintln(os.Stdout, "Repository:")
-	fmt.Fprintf(os.Stdout, "\tquay.io/%v/%v\n", repos.Namespace, repos.Name)
+	fmt.Fprintf(os.Stdout, "\t%v/%v/%v\n", hostname, repos.Namespace, repos.Name)
 
 	fmt.Fprintln(os.Stdout, "Visibility:")
 	if repos.IsPublic == true {
@@ -41,7 +46,7 @@ func (c *GetCommand) Run(args []string) int {
 	}
 	fmt.Fprintln(os.Stdout, "Permissions:")
 
-	permissions, err := quay.GetPermissions(ss[0], ss[1], "user")
+	permissions, err := quay.GetPermissions(ss[0], ss[1], "user", hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
@@ -50,7 +55,7 @@ func (c *GetCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stdout, "\t%v(%v)\n", p.Name, p.Role)
 	}
 
-	permissions, err = quay.GetPermissions(ss[0], ss[1], "team")
+	permissions, err = quay.GetPermissions(ss[0], ss[1], "team", hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)

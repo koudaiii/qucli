@@ -13,23 +13,28 @@ type DeleteCommand struct {
 }
 
 func (c *DeleteCommand) Run(args []string) int {
-	if len(args) != 1 {
+	if err := FlagInit(args); err != nil {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	ss := strings.Split(args[0], "/")
+	if len(subcommandArgs) != 1 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	ss := strings.Split(subcommandArgs[0], "/")
 	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	err := quay.DeleteRepository(ss[0], ss[1])
+	err := quay.DeleteRepository(ss[0], ss[1], hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Deleted! quay.io/%v/%v\n", ss[0], ss[1])
+	fmt.Fprintf(os.Stdout, "Deleted! %v/%v/%v\n", hostname, ss[0], ss[1])
 	return 0
 }
 

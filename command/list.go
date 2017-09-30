@@ -6,8 +6,9 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/koudaiii/qucli/quay"
 	"strconv"
+
+	"github.com/koudaiii/qucli/quay"
 )
 
 type ListCommand struct {
@@ -17,17 +18,17 @@ type ListCommand struct {
 func (c *ListCommand) Run(args []string) int {
 	var repositoryColumns = []string{"NAME", "isPublic", "DESCRIPTION"}
 
-	if len(args) < 1 {
-		fmt.Fprintln(os.Stderr, c.Help())
-		os.Exit(1)
-	}
-
 	if err := FlagInit(args); err != nil {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	repositories, err := quay.ListRepository(args[0], public)
+	if len(subcommandArgs) < 1 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	repositories, err := quay.ListRepository(subcommandArgs[0], public, hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
@@ -40,7 +41,7 @@ func (c *ListCommand) Run(args []string) int {
 
 	for _, repos := range repositories.Items {
 		fmt.Fprintln(repositoryPrint, strings.Join(
-			[]string{"quay.io/" + repos.Namespace + "/" + repos.Name, strconv.FormatBool(repos.IsPublic), repos.Description}, "\t",
+			[]string{hostname + "/" + repos.Namespace + "/" + repos.Name, strconv.FormatBool(repos.IsPublic), repos.Description}, "\t",
 		))
 	}
 	repositoryPrint.Flush()
@@ -55,7 +56,7 @@ func (c *ListCommand) Help() string {
 	helpText := `
 qucli supported only Quay.io
 Usage: list
-  qucli list
+  qucli list koudaiii
 `
 	return strings.TrimSpace(helpText)
 }

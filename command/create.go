@@ -18,23 +18,23 @@ func (c *CreateCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	if len(args) < 1 {
+	if len(subcommandArgs) < 1 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	ss := strings.Split(args[0], "/")
+	ss := strings.Split(subcommandArgs[0], "/")
 	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	repos, err := quay.CreateRepository(ss[0], ss[1], visibility)
+	repos, err := quay.CreateRepository(ss[0], ss[1], visibility, hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Created! quay.io/%v/%v\n", repos.Namespace, repos.Name)
+	fmt.Fprintf(os.Stdout, "Created! %v/%v/%v\n", hostname, repos.Namespace, repos.Name)
 
 	return 0
 }

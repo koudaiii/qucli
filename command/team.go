@@ -22,23 +22,23 @@ func (c *AddTeamCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	if len(args) < 2 {
+	if len(subcommandArgs) < 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	ss := strings.Split(args[0], "/")
+	ss := strings.Split(subcommandArgs[0], "/")
 	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	repos, err := quay.AddPermission(ss[0], ss[1], "team", args[1], role)
+	repos, err := quay.AddPermission(ss[0], ss[1], "team", subcommandArgs[1], role, hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Added! %v(%v) in quay.io/%v/%v\n", repos.Name, repos.Role, ss[0], ss[1])
+	fmt.Fprintf(os.Stdout, "Added! %v(%v) in %v/%v/%v\n", repos.Name, repos.Role, hostname, ss[0], ss[1])
 	return 0
 }
 
@@ -56,23 +56,28 @@ Usage: add-team
 }
 
 func (c *DeleteTeamCommand) Run(args []string) int {
-	if len(args) != 2 {
+	if err := FlagInit(args); err != nil {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	ss := strings.Split(args[0], "/")
+	if len(subcommandArgs) != 2 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	ss := strings.Split(subcommandArgs[0], "/")
 	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	err := quay.DeletePermission(ss[0], ss[1], "team", args[1])
+	err := quay.DeletePermission(ss[0], ss[1], "team", subcommandArgs[1], hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Fprintf(os.Stdout, "Deleted! %v in quay.io/%v/%v\n", args[1], ss[0], ss[1])
+	fmt.Fprintf(os.Stdout, "Deleted! %v in %v/%v/%v\n", subcommandArgs[1], hostname, ss[0], ss[1])
 	return 0
 }
 

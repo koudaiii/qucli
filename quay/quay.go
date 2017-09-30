@@ -1,6 +1,10 @@
 package quay
 
-const QuayURLBase = "https://quay.io/api/v1/"
+import (
+	"fmt"
+	"net/url"
+	"os"
+)
 
 type QuayPermission struct {
 	Name string `json:"name"`
@@ -40,4 +44,16 @@ type RequestRepository struct {
 	Visibility  string `json:"visibility"`
 	Repository  string `json:"repository"`
 	Description string `json:"description"`
+}
+
+func QuayURLParse(hostname string) *url.URL {
+	if os.Getenv("QUAY_HOSTNAME") != "" {
+		hostname = os.Getenv("QUAY_HOSTNAME")
+	}
+	u, err := url.Parse("https://" + hostname + "/api/v1/")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "err: %v\n", err)
+		os.Exit(1)
+	}
+	return u
 }
