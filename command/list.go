@@ -18,17 +18,17 @@ type ListCommand struct {
 func (c *ListCommand) Run(args []string) int {
 	var repositoryColumns = []string{"NAME", "isPublic", "DESCRIPTION"}
 
-	if len(args) < 1 {
-		fmt.Fprintln(os.Stderr, c.Help())
-		os.Exit(1)
-	}
-
 	if err := FlagInit(args); err != nil {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	repositories, err := quay.ListRepository(args[0], public, hostname)
+	if len(subcommandArgs) < 1 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	repositories, err := quay.ListRepository(subcommandArgs[0], public, hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
@@ -56,7 +56,7 @@ func (c *ListCommand) Help() string {
 	helpText := `
 qucli supported only Quay.io
 Usage: list
-  qucli list
+  qucli list koudaiii
 `
 	return strings.TrimSpace(helpText)
 }
