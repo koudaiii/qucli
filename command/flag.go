@@ -23,10 +23,10 @@ func FlagInit(args []string) error {
 	flags.StringVar(&role, "role", "read", "role to use for the user =  ['read', 'write', 'admin'].")
 	flags.BoolVar(&public, "is-public", true, "'--is-public=true' or '--is-public=false'.")
 	flags.StringVar(&hostname, "hostname", "quay.io", "If you use enterprise plan, set hostname option. ex '--hostname=quay.example.com'")
-	subcommandArgs = flags.Args()
 
 	if err := flags.Parse(args[0:]); err != nil {
 		return err
 	}
+	subcommandArgs = flags.Args()
 	return nil
 }
