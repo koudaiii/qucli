@@ -31,6 +31,14 @@ Manage repositories in Quay.io
 $ export QUAY_API_TOKEN=foobar
 ```
 
+if Quay Enterprise user, add Enviroment QUAY_HOSTNAME or `--hostname`
+
+```bash
+$ export QUAY_HOSTNAME=quay.example.com
+or
+$ qucli xxx --hostname=quay.example.com
+```
+
 ## Installation
 
 ### Using Homebrew (OS X only)
@@ -236,6 +244,7 @@ Permissions:
 |`--visibility=VISIBILITY`| "visibility set to 'public' or 'private'||`public`|
 |`--role=ROLE`|role to use for the user or team =  ['read', 'write', 'admin']||`read`|
 |`--is-public=bool`| repository type is public. `true` or `false`||`true`|
+|`--hostname=HOSTNAME`| if Quay Enterprise user, set hostname. ||`quay.io`|
 |`--help`|Print command line usage|||
 |`-v`, `--version`|Print version|||
 
