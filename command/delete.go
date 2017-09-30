@@ -13,12 +13,17 @@ type DeleteCommand struct {
 }
 
 func (c *DeleteCommand) Run(args []string) int {
-	if len(args) != 1 {
+	if err := FlagInit(args); err != nil {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	ss := strings.Split(args[0], "/")
+	if len(subcommandArgs) != 1 {
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	ss := strings.Split(subcommandArgs[0], "/")
 	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
