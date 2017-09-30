@@ -47,6 +47,9 @@ type RequestRepository struct {
 }
 
 func QuayURLParse(hostname string) *url.URL {
+	if os.Getenv("QUAY_HOSTNAME") != "" {
+		hostname = os.Getenv("QUAY_HOSTNAME")
+	}
 	u, err := url.Parse("https://" + hostname + "/api/v1/")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
