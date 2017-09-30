@@ -22,18 +22,18 @@ func (c *AddUserCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	if len(args) < 2 {
+	if len(subcommandArgs) < 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	ss := strings.Split(args[0], "/")
+	ss := strings.Split(subcommandArgs[0], "/")
 	if len(ss) != 2 {
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	repos, err := quay.AddPermission(ss[0], ss[1], "user", args[1], role, hostname)
+	repos, err := quay.AddPermission(ss[0], ss[1], "user", subcommandArgs[1], role, hostname)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v\n", err)
 		os.Exit(1)
