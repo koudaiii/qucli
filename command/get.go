@@ -64,6 +64,19 @@ func (c *GetCommand) Run(args []string) int {
 		fmt.Fprintf(os.Stdout, "\t%v(%v)\n", p.Name, p.Role)
 	}
 
+	fmt.Fprintln(os.Stdout, "Notifications:")
+
+	notitications, err := quay.ListRepositoryNotifications(ss[0], ss[1], hostname)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "err: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Fprintln(os.Stdout, "\tTitle\tEvent\tMethod\tEventConfig\tUUID\tNumberOfFailures\tConfig")
+
+	for _, n := range notitications.Items {
+		fmt.Fprintf(os.Stdout, "\t%v\t%v\t%v\t%v\t%v\t%v\t%v\n", n.Title, n.Event, n.Method, n.EventConfig, n.UUID, n.NumberOfFailures, n.Config)
+	}
 	return 0
 }
 
