@@ -72,10 +72,8 @@ func (c *GetCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	fmt.Fprintln(os.Stdout, "\tTitle\tEvent\tMethod\tEventConfig\tUUID\tNumberOfFailures\tConfig")
-
 	for _, n := range notitications.Items {
-		fmt.Fprintf(os.Stdout, "\t%v\t%v\t%v\t%v\t%v\t%v\t%v\n", n.Title, n.Event, n.Method, n.EventConfig, n.UUID, n.NumberOfFailures, n.Config)
+		fmt.Fprintf(os.Stdout, "\t%v\t%v\t%v\t%v\t%v\n", n.UUID, n.Title, n.Event, n.Method, n.Config["url"])
 	}
 	return 0
 }
