@@ -42,3 +42,48 @@ func ListRepositoryNotifications(namespace string, name string, hostname string)
 	}
 	return notifications, nil
 }
+
+func DeleteRepositoryNotification(namespace string, name string, uuid string, hostname string) error {
+	u := QuayURLParse(hostname)
+
+	u.Path = path.Join(u.Path, "repository", namespace, name, "notification", uuid)
+
+	_, err := utils.HttpDelete(u.String(), os.Getenv("QUAY_API_TOKEN"))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func AddRepositoryNotification(namespace string, name string, request RequestRepositoryNotification, hostname string) (RepositoryNotification, error) {
+	var repos RepositoryNotification
+	req, err := json.Marshal(request)
+
+	u := QuayURLParse(hostname)
+	u.Path = path.Join(u.Path, "repository", namespace, name, "notification")
+
+	body, err := utils.HttpPost(u.String()+"/", os.Getenv("QUAY_API_TOKEN"), req)
+	if err != nil {
+		return repos, err
+	}
+
+	if err := json.Unmarshal([]byte(body), &repos); err != nil {
+		return repos, err
+	}
+
+	return repos, nil
+}
+
+func TestRepositoryNotification(namespace string, name string, uuid string, hostname string) error {
+	u := QuayURLParse(hostname)
+
+	u.Path = path.Join(u.Path, "repository", namespace, name, "notification", uuid, "test")
+
+	_, err := utils.HttpPost(u.String(), os.Getenv("QUAY_API_TOKEN"), nil)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
