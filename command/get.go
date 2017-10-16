@@ -79,7 +79,7 @@ func (c *GetCommand) Run(args []string) int {
 }
 
 func (c *GetCommand) Synopsis() string {
-	return fmt.Sprint("Get repository and Permissions in Quay")
+	return fmt.Sprint("Get Repository and Permissions and Notifications in Quay")
 }
 
 func (c *GetCommand) Help() string {
