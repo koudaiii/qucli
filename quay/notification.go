@@ -14,10 +14,7 @@ func ListRepositoryNotifications(namespace string, name string, hostname string)
 
 	u := QuayURLParse(hostname)
 
-	u.Path = path.Join(u.Path, "repository")
-	u.Path = path.Join(u.Path, namespace)
-	u.Path = path.Join(u.Path, name)
-	u.Path = path.Join(u.Path, "notification")
+	u.Path = path.Join(u.Path, "repository", namespace, name, "notification")
 
 	body, err := utils.HttpGet(u.String(), os.Getenv("QUAY_API_TOKEN"))
 	if err != nil {
@@ -29,6 +26,9 @@ func ListRepositoryNotifications(namespace string, name string, hostname string)
 	}
 
 	for _, item := range repos.Items {
+		if item["title"] == nil {
+			item["title"] = ""
+		}
 		notifications.Items = append(notifications.Items,
 			RepositoryNotification{
 				Title:            item["title"].(string),
