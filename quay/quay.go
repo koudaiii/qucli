@@ -28,19 +28,21 @@ type ResponseRepositories struct {
 }
 
 type RequestRepositoryNotification struct {
-	Title       string `json:"title"`
-	Event       string `json:"event"`
-	Method      string `json:"method"`
-	Config      []NotificationConfig
-	EventConfig []NotificationEventConfig
+	Title       string                  `json:"title,omitempty"`
+	Event       string                  `json:"event,omitempty"`
+	Method      string                  `json:"method,omitempty"`
+	Config      NotificationConfig      `json:"config,omitempty"`
+	EventConfig NotificationEventConfig `json:"eventConfig,omitempty"`
 }
 
 type NotificationConfig struct {
-	URL string `json:"url"`
+	URL   string `json:"url,omitempty"`
+	Email string `json:"email,omitempty"`
 }
 
 type NotificationEventConfig struct {
-	EventConfig []map[string]interface{} `json:"eventConfig"`
+	Level    string `json:"level,omitempty"`
+	RefRegex string `json:"ref-regex,omitempty"`
 }
 
 type ResponseRepositoryNotifications struct {
@@ -52,13 +54,13 @@ type RepositoryNotifications struct {
 }
 
 type RepositoryNotification struct {
-	Title            string                 `json:"title"`
-	Event            string                 `json:"event"`
-	Method           string                 `json:"method"`
-	EventConfig      map[string]interface{} `json:"event_config"`
-	UUID             string                 `json:"uuid"`
-	NumberOfFailures float64                `json:"number_of_failures"`
-	Config           map[string]interface{} `json:"config"`
+	Title            string                 `json:"title,omitempty"`
+	Event            string                 `json:"event,omitempty"`
+	Method           string                 `json:"method,omitempty"`
+	EventConfig      map[string]interface{} `json:"event_config,omitempty"`
+	UUID             string                 `json:"uuid,omitempty"`
+	NumberOfFailures float64                `json:"number_of_failures,omitempty"`
+	Config           map[string]interface{} `json:"config,omitempty"`
 }
 
 type QuayRepository struct {
