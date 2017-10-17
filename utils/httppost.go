@@ -26,7 +26,7 @@ func HttpPost(url string, apitoken string, body []byte) (string, error) {
 		return "", err
 	}
 
-	if resp.StatusCode != http.StatusCreated {
+	if (resp.StatusCode != http.StatusCreated) && (resp.StatusCode != http.StatusOK) {
 		return "", fmt.Errorf("HTTP error!\nURL: %s\nstatus code: %d\nbody:\n%s\n", url, resp.StatusCode, string(b))
 	}
 

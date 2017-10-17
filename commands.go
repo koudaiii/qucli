@@ -27,6 +27,21 @@ func Commands(meta *command.Meta) map[string]cli.CommandFactory {
 				Meta: *meta,
 			}, nil
 		},
+		"add-notification": func() (cli.Command, error) {
+			return &command.AddNotificationCommand{
+				Meta: *meta,
+			}, nil
+		},
+		"delete-notification": func() (cli.Command, error) {
+			return &command.DeleteNotificationCommand{
+				Meta: *meta,
+			}, nil
+		},
+		"test-notification": func() (cli.Command, error) {
+			return &command.TestNotificationCommand{
+				Meta: *meta,
+			}, nil
+		},
 		"list": func() (cli.Command, error) {
 			return &command.ListCommand{
 				Meta: *meta,

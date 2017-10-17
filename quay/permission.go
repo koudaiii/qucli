@@ -46,7 +46,6 @@ func DeletePermission(namespace string, name string, accountType string, account
 
 func AddPermission(namespace string, name string, accountType string, account string, role string, hostname string) (QuayPermission, error) {
 	var repos QuayPermission
-	var permission QuayPermission
 	req, err := json.Marshal(QuayPermission{
 		Role: role,
 	})
@@ -56,7 +55,7 @@ func AddPermission(namespace string, name string, accountType string, account st
 
 	body, err := utils.HttpPut(u.String(), os.Getenv("QUAY_API_TOKEN"), req)
 	if err != nil {
-		return permission, err
+		return repos, err
 	}
 
 	if err := json.Unmarshal([]byte(body), &repos); err != nil {
