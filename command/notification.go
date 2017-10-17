@@ -104,6 +104,15 @@ func (c *AddNotificationCommand) Help() string {
 qucli supported only Quay.io
 Usage: add-notification
   qucli add-notification koudaiii/qucli --event="repo_push" --method="webhook" --url="http://url/goes/here"
+
+Option:
+  --email string        if you use 'email' method, set E-mail address. 'test@example.com'.
+  --event string        set 'evnet'.  ['repo_push', 'build_queued', 'build_start', 'build_success', 'build_failure', 'build_cancelled', 'vulnerability_found'].
+  --level string        if you use 'vulnerability_found' method, A vulnerability must have a severity of the chosen level (highest level is 0).[0-6]
+  --method string       set 'method'.  ['webhook', 'slack', 'email'].
+  --ref string          An optional regular expression for matching the git branch or tag git ref. If left blank, the notification will fire for all builds.(refs/heads/somebranch)|(refs/tags/sometag)
+  --title string        The title for a notification is an optional field for a human-readable title for the notification.
+  --url string          if you use 'webhook' or 'slack' method, set url. 'http://url/goes/here' or 'https://hooks.slack.com/service/{some}/{token}/{here}'.
 `
 	return strings.TrimSpace(helpText)
 }
