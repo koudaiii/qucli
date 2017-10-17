@@ -44,8 +44,9 @@ func (c *AddNotificationCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	// Default use url. if you use email method, do not use url.
-	if event == "email" {
+	// Default use 'url' option and method is 'webhook' method. if you use 'email', do not use 'url' option and 'webhook' method.
+	if method == "email" || email != "" {
+		method = "email"
 		url = ""
 	}
 
