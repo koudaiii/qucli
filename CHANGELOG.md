@@ -1,3 +1,15 @@
+## 0.6.2 (2017-10-17)
+
+- fix version v0.6.2 and fix link in READE #30 #29
+
+## 0.6.1 (2017-10-17)
+
+- Fix bug `--is-publuc` option #28
+
+## 0.6.0 (2017-10-17)
+
+- Add notification command #27
+
 ## 0.5.0 (2017-09-30)
 
 - Allow a different hostname other than quay.io #22
