@@ -37,16 +37,16 @@ func (c *AddNotificationCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	// if you use 'vulnerability_found' method, you need set 'level' option.
-	if method == "vulnerability_found" && level == "" {
-		fmt.Fprintln(os.Stderr, "if you use 'vulnerability_found' method, you need set 'level' option.")
+	// if you use 'vulnerability_found' event, you need set 'level' option.
+	if event == "vulnerability_found" && level == "" {
+		fmt.Fprintln(os.Stderr, "if you use 'vulnerability_found' event, you need set 'level' option.")
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
 
-	// if you set method without 'vulnerability_found', you can not set 'level' option.
-	if method != "vulnerability_found" && level != "" {
-		fmt.Fprintln(os.Stderr, "if you set method without 'vulnerability_found', you can not set 'level' option.")
+	// if you set event excluding 'vulnerability_found' event, you can not set 'level' option.
+	if event != "vulnerability_found" && level != "" {
+		fmt.Fprintln(os.Stderr, "if you set event excluding 'vulnerability_found' event, you can not set 'level' option.")
 		fmt.Fprintln(os.Stderr, c.Help())
 		os.Exit(1)
 	}
@@ -106,13 +106,13 @@ Usage: add-notification
   qucli add-notification koudaiii/qucli --event="repo_push" --method="webhook" --url="http://url/goes/here"
 
 Option:
-  --email string        if you use 'email' method, set E-mail address. 'test@example.com'.
   --event string        set 'evnet'.  ['repo_push', 'build_queued', 'build_start', 'build_success', 'build_failure', 'build_cancelled', 'vulnerability_found'].
-  --level string        if you use 'vulnerability_found' method, A vulnerability must have a severity of the chosen level (highest level is 0).[0-6]
+  --level string        if you use 'vulnerability_found' evnet, A vulnerability must have a severity of the chosen level (highest level is 0).[0-6]
+  --ref string          if you use event excluding 'repo_push' event, an optional regular expression for matching the git branch or tag git ref. If left blank, the notification will fire for all builds.(refs/heads/somebranch)|(refs/tags/sometag)
   --method string       set 'method'.  ['webhook', 'slack', 'email'].
-  --ref string          An optional regular expression for matching the git branch or tag git ref. If left blank, the notification will fire for all builds.(refs/heads/somebranch)|(refs/tags/sometag)
-  --title string        The title for a notification is an optional field for a human-readable title for the notification.
+  --email string        if you use 'email' method, set E-mail address. 'test@example.com'.
   --url string          if you use 'webhook' or 'slack' method, set url. 'http://url/goes/here' or 'https://hooks.slack.com/service/{some}/{token}/{here}'.
+  --title string        The title for a notification is an optional field for a human-readable title for the notification.
 `
 	return strings.TrimSpace(helpText)
 }
