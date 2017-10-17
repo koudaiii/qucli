@@ -321,7 +321,7 @@ Deleted! 3c3c142c-2161-42ae-9414-39c787386b5c notification in quay.io/koudaiii/t
 |`--hostname=HOSTNAME`| if Quay Enterprise user, set hostname. ||`quay.io`|
 |`--event=EVENT` | set 'evnet'. EVENT='repo_push' or 'build_queued' or 'build_start' or 'build_success' or 'build_failure' or 'build_cancelled' or 'vulnerability_found'. |true||
 |`--level=LEVEL`| if you use 'vulnerability_found' evnet, A vulnerability must have a severity of the chosen level (highest level is 0).LEVEL=0-6 |||
-|`--ref=REF`|if you use event excluding 'repo_push' event, an optional regular expression for matching the git branch or tag git ref. If left blank, the notification will fire for all builds.(refs/heads/somebranch)|(refs/tags/sometag) |||
+|`--ref=REF`|if you use event excluding 'repo_push' event, an optional regular expression for matching the git branch or tag git ref. If left blank, the notification will fire for all builds.(refs/heads/somebranch) or (refs/tags/sometag) |||
 |`--method=METHOD`|set 'method'.  METHOD='webhook' or 'slack' or 'email'.|true||
 |`--email=EMAIL`|if you use 'email' method, set E-mail address. EMAIL='test@example.com'.|||
 |`--url=URL`|if you use 'webhook' or 'slack' method, set url. 'http://url/goes/here' or 'https://hooks.slack.com/service/{some}/{token}/{here}'.|||
