@@ -1,6 +1,6 @@
 # qucli
 
-[![Build Status](https://travis-ci.org/koudaiii/qucli.svg?branch=master)](https://travis-ci.org/koudaiii/dqucli)
+[![Build Status](https://travis-ci.org/koudaiii/qucli.svg?branch=master)](https://travis-ci.org/koudaiii/qucli)
 [![Docker Repository on Quay](https://quay.io/repository/koudaiii/qucli/status "Docker Repository on Quay")](https://quay.io/repository/koudaiii/qucli)
 [![GitHub release](https://img.shields.io/github/release/koudaiii/qucli.svg)](https://github.com/koudaiii/qucli/releases)
 
