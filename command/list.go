@@ -40,9 +40,11 @@ func (c *ListCommand) Run(args []string) int {
 	fmt.Fprintln(repositoryPrint, strings.Join(repositoryColumns, "\t"))
 
 	for _, repos := range repositories.Items {
-		fmt.Fprintln(repositoryPrint, strings.Join(
-			[]string{hostname + "/" + repos.Namespace + "/" + repos.Name, strconv.FormatBool(repos.IsPublic), repos.Description}, "\t",
-		))
+		if public == repos.IsPublic {
+			fmt.Fprintln(repositoryPrint, strings.Join(
+				[]string{hostname + "/" + repos.Namespace + "/" + repos.Name, strconv.FormatBool(repos.IsPublic), repos.Description}, "\t",
+			))
+		}
 	}
 	repositoryPrint.Flush()
 	return 0
