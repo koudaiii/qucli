@@ -44,10 +44,32 @@ func (c *AddNotificationCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
-	// Default use 'url' option and method is 'webhook' method. if you use 'email', do not use 'url' option and 'webhook' method.
-	if method == "email" || email != "" {
-		method = "email"
-		url = ""
+	// if you set method without 'vulnerability_found', you can not set 'level' option.
+	if method != "vulnerability_found" && level != "" {
+		fmt.Fprintln(os.Stderr, "if you set method without 'vulnerability_found', you can not set 'level' option.")
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	// if you use 'email' method, you need set 'email' option.
+	if method == "email" && email == "" {
+		fmt.Fprintln(os.Stderr, "if you use 'email' method, you need set 'email' option.")
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	// if you use 'slack'  or 'webhook' method, you need set 'url' option.
+	if (method == "slack" || method == "webhook") && url == "" {
+		fmt.Fprintln(os.Stderr, "if you use 'slack'  or 'webhook' method, you need set 'url' option.")
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
+	// if you use 'repo_push' event, you can not set 'ref' option.
+	if event == "repo_push" && ref != "" {
+		fmt.Fprintln(os.Stderr, "if you use 'repo_push' event, you can not set 'ref' option.")
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
 	}
 
 	req := quay.RequestRepositoryNotification{
