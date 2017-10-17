@@ -261,21 +261,21 @@ Permissions:
 
 Add notification in repository with some options.
 
-- webhook
+- `webhook` method
 
 ```shell-session
 $ qucli add-notification koudaiii/test --event="repo_push" --method="webhook" --url="http://url/goes/here"
 Added! 	3c3c142c-2161-42ae-9414-39c787386b5c		repo_push	map[]	webhook	map[url:http://url/goes/here]	in quay.io/koudaiii/test
 ```
 
-- slack
+- `slack` method
 
 ```shell-session
 $ qucli add-notification koudaiii/test --event="repo_push" --method="slack" --url="https://hooks.slack.com/service/{some}/{token}/{here}"
 Added! 	61ae254f-89f0-4a36-a439-9b78004f2ab0		repo_push	map[]	slack	map[url:https://hooks.slack.com/service/{some}/{token}/{here}]	in quay.io/koudaiii/test
 ```
 
-- help
+- options
 
 ```shell-session
 $ qucli add-notification
@@ -295,7 +295,7 @@ Option:
 
 ### `test-notification`
 
-Test notification.
+Test notification from repository.
 
 ```shell-session
 $ qucli test-notification koudaiii/qucli 0c91e746-9d9e-4845-8dff-3c0995976dfa
@@ -304,7 +304,7 @@ Test Notification! 0c91e746-9d9e-4845-8dff-3c0995976dfa notification in quay.io/
 
 ### `delete-notification`
 
-Delete notification.
+Delete notification from repository.
 
 ```shell-session
 $ ./bin/qucli delete-notification koudaiii/test 3c3c142c-2161-42ae-9414-39c787386b5c
@@ -316,16 +316,16 @@ Deleted! 3c3c142c-2161-42ae-9414-39c787386b5c notification in quay.io/koudaiii/t
 |Option|Description|Required|Default|
 |---------|-----------|-------|-------|
 |`--visibility=VISIBILITY`| "visibility set to 'public' or 'private'||`public`|
-|`--role=ROLE`|role to use for the user or team =  ['read', 'write', 'admin']||`read`|
+|`--role=ROLE`|role to use for the user or team ROLE='read' or 'write' or 'admin'||`read`|
 |`--is-public=bool`| repository type is public. `true` or `false`||`true`|
 |`--hostname=HOSTNAME`| if Quay Enterprise user, set hostname. ||`quay.io`|
-|`--event string` | set 'evnet'.  ['repo_push', 'build_queued', 'build_start', 'build_success', 'build_failure', 'build_cancelled', 'vulnerability_found']. |true||
-|`--level string`| if you use 'vulnerability_found' evnet, A vulnerability must have a severity of the chosen level (highest level is 0).[0-6] |||
-|`--ref string`|if you use event excluding 'repo_push' event, an optional regular expression for matching the git branch or tag git ref. If left blank, the notification will fire for all builds.(refs/heads/somebranch)|(refs/tags/sometag) |||
-|`--method string`|set 'method'.  ['webhook', 'slack', 'email'].|true||
-|`--email string`|if you use 'email' method, set E-mail address. 'test@example.com'.|||
-|`--url string`|if you use 'webhook' or 'slack' method, set url. 'http://url/goes/here' or 'https://hooks.slack.com/service/{some}/{token}/{here}'.|||
-|`--title string|The title for a notification is an optional field for a human-readable title for the notification.|||
+|`--event=EVENT` | set 'evnet'. EVENT='repo_push' or 'build_queued' or 'build_start' or 'build_success' or 'build_failure' or 'build_cancelled' or 'vulnerability_found'. |true||
+|`--level=LEVEL`| if you use 'vulnerability_found' evnet, A vulnerability must have a severity of the chosen level (highest level is 0).LEVEL=0-6 |||
+|`--ref=REF`|if you use event excluding 'repo_push' event, an optional regular expression for matching the git branch or tag git ref. If left blank, the notification will fire for all builds.(refs/heads/somebranch)|(refs/tags/sometag) |||
+|`--method=METHOD`|set 'method'.  METHOD='webhook' or 'slack' or 'email'.|true||
+|`--email=EMAIL`|if you use 'email' method, set E-mail address. EMAIL='test@example.com'.|||
+|`--url=URL`|if you use 'webhook' or 'slack' method, set url. 'http://url/goes/here' or 'https://hooks.slack.com/service/{some}/{token}/{here}'.|||
+|`--title=TITLE`|The title for a notification is an optional field for a human-readable title for the notification.|||
 |`--help`|Print command line usage|||
 |`-v`, `--version`|Print version|||
 
