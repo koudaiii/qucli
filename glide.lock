@@ -1,5 +1,5 @@
-hash: 56b0dd888b4f8901fee80828a3b6a9629e8249631311ab39c3229aa6be0d5c0b
-updated: 2017-10-18T20:57:41.073090768+09:00
+hash: accfc6c403acdb3d82324d083c42efe02a2f401ac682fbed20446fe16054f537
+updated: 2017-10-18T21:24:50.002878546+09:00
 imports:
 - name: github.com/armon/go-radix
   version: 1fca145dffbcaa8fe914309b1ec0cfc67500fe61
@@ -10,7 +10,7 @@ imports:
 - name: github.com/hashicorp/go-multierror
   version: 83588e72410abfbe4df460eeb6f30841ae47d4c4
 - name: github.com/kelseyhightower/envconfig
-  version: ac12b1f15efba734211a556d8b125110dc538016
+  version: f611eb38b3875cc3bd991ca91c51d06446afa14c
 - name: github.com/mattn/go-isatty
   version: 30a891c33c7cde7b02a981314b4228ec99380cca
 - name: github.com/mitchellh/cli
@@ -22,7 +22,7 @@ imports:
   - cmd/install
   - match
 - name: github.com/spf13/pflag
-  version: 9ff6c6923cfffbcd502984b8e0c80539a94968b7
+  version: e57e3eeb33f795204c1ca35f56c44f83227c6e66
 - name: golang.org/x/sys
   version: d5645953809d8b4752afb2c3224b1f1ad73dfa70
   subpackages:
