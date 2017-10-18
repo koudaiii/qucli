@@ -4,7 +4,28 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+
+	"github.com/kelseyhightower/envconfig"
 )
+
+type Config struct {
+	Hostname string `envconfig:"HOSTNAME"`
+	APIToken string `envconfig:"API_TOKEN"`
+}
+
+const (
+	appName = "quay"
+)
+
+var config *Config
+
+func init() {
+	c := &Config{}
+	if err := envconfig.Process(appName, c); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+	}
+	config = c
+}
 
 type QuayPermission struct {
 	Name string `json:"name"`
