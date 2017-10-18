@@ -2,7 +2,6 @@ package quay
 
 import (
 	"encoding/json"
-	"os"
 	"path"
 
 	"github.com/koudaiii/qucli/utils"
@@ -15,7 +14,7 @@ func GetPermissions(namespace string, name string, accountType string, hostname 
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType) + "/"
 
-	body, err := utils.HttpGet(u.String(), os.Getenv("QUAY_API_TOKEN"))
+	body, err := utils.HttpGet(u.String(), QuayAPIToken)
 	if err != nil {
 		return permissions, err
 	}
@@ -36,7 +35,7 @@ func DeletePermission(namespace string, name string, accountType string, account
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType, account)
 
-	_, err := utils.HttpDelete(u.String(), os.Getenv("QUAY_API_TOKEN"))
+	_, err := utils.HttpDelete(u.String(), QuayAPIToken)
 	if err != nil {
 		return err
 	}
@@ -53,7 +52,7 @@ func AddPermission(namespace string, name string, accountType string, account st
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType, account)
 
-	body, err := utils.HttpPut(u.String(), os.Getenv("QUAY_API_TOKEN"), req)
+	body, err := utils.HttpPut(u.String(), QuayAPIToken, req)
 	if err != nil {
 		return repos, err
 	}
