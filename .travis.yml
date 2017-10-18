@@ -27,16 +27,16 @@ deploy:
     on:
       repo: koudaiii/qucli
       tags: true
-      go: '1.7'
+      go: '1.8'
   - provider: script
     skip_cleanup: true
     script: make ci-docker-release
     on:
       branch: master
-      go: '1.7'
+      go: '1.8'
   - provider: script
     skip_cleanup: true
     script: DOCKER_IMAGE_TAG=$TRAVIS_TAG make ci-docker-release
     on:
       tags: true
-      go: '1.7'
+      go: '1.8'
