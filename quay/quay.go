@@ -114,5 +114,3 @@ func QuayURLParse(hostname string) *url.URL {
 	}
 	return u
 }
-
-var QuayAPIToken = os.Getenv("QUAY_API_TOKEN")
