@@ -15,7 +15,7 @@ func ListRepositoryNotifications(namespace string, name string, hostname string)
 
 	u.Path = path.Join(u.Path, "repository", namespace, name, "notification")
 
-	body, err := utils.HttpGet(u.String(), QuayAPIToken)
+	body, err := utils.HttpGet(u.String(), config.APIToken)
 	if err != nil {
 		return notifications, err
 	}
@@ -47,7 +47,7 @@ func DeleteRepositoryNotification(namespace string, name string, uuid string, ho
 
 	u.Path = path.Join(u.Path, "repository", namespace, name, "notification", uuid)
 
-	_, err := utils.HttpDelete(u.String(), QuayAPIToken)
+	_, err := utils.HttpDelete(u.String(), config.APIToken)
 	if err != nil {
 		return err
 	}
@@ -62,7 +62,7 @@ func AddRepositoryNotification(namespace string, name string, request RequestRep
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "notification")
 
-	body, err := utils.HttpPost(u.String()+"/", QuayAPIToken, req)
+	body, err := utils.HttpPost(u.String()+"/", config.APIToken, req)
 	if err != nil {
 		return repos, err
 	}
@@ -79,7 +79,7 @@ func TestRepositoryNotification(namespace string, name string, uuid string, host
 
 	u.Path = path.Join(u.Path, "repository", namespace, name, "notification", uuid, "test")
 
-	_, err := utils.HttpPost(u.String(), QuayAPIToken, nil)
+	_, err := utils.HttpPost(u.String(), config.APIToken, nil)
 	if err != nil {
 		return err
 	}

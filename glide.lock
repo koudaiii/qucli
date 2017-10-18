@@ -1,18 +1,30 @@
-hash: 6ef170f6cd15fb33b5302f9b9407a40ed092160ff97a2318a40b1ca4e3d1a6e4
-updated: 2017-01-15T00:59:58.204414298+09:00
+hash: accfc6c403acdb3d82324d083c42efe02a2f401ac682fbed20446fe16054f537
+updated: 2017-10-18T21:24:50.002878546+09:00
 imports:
 - name: github.com/armon/go-radix
-  version: 4239b77079c7b5d1243b7b4736304ce8ddb6f0f2
+  version: 1fca145dffbcaa8fe914309b1ec0cfc67500fe61
 - name: github.com/bgentry/speakeasy
-  version: 36e9cfdd690967f4f690c6edcc9ffacd006014a0
+  version: 4aabc24848ce5fd31929f7d1e4ea74d3709c14cd
+- name: github.com/hashicorp/errwrap
+  version: 7554cd9344cec97297fa6649b055a8c98c2a1e55
+- name: github.com/hashicorp/go-multierror
+  version: 83588e72410abfbe4df460eeb6f30841ae47d4c4
+- name: github.com/kelseyhightower/envconfig
+  version: f611eb38b3875cc3bd991ca91c51d06446afa14c
 - name: github.com/mattn/go-isatty
   version: 30a891c33c7cde7b02a981314b4228ec99380cca
 - name: github.com/mitchellh/cli
-  version: 168daae10d6ff81b8b1201b0a4c9607d7e9b82e3
+  version: 65fcae5817c8600da98ada9d7edf26dd1a84837b
+- name: github.com/posener/complete
+  version: 88e59760adaddb8276c9b15511302890690e2dae
+  subpackages:
+  - cmd
+  - cmd/install
+  - match
 - name: github.com/spf13/pflag
-  version: 5ccb023bc27df288a957c5e994cd44fd19619465
+  version: e57e3eeb33f795204c1ca35f56c44f83227c6e66
 - name: golang.org/x/sys
-  version: 8f0908ab3b2457e2e15403d3697c9ef5cb4b57a9
+  version: d5645953809d8b4752afb2c3224b1f1ad73dfa70
   subpackages:
   - unix
 testImports: []

@@ -4,7 +4,28 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+
+	"github.com/kelseyhightower/envconfig"
 )
+
+type Config struct {
+	Hostname string `envconfig:"HOSTNAME"`
+	APIToken string `envconfig:"API_TOKEN"`
+}
+
+const (
+	appName = "quay"
+)
+
+var config *Config
+
+func init() {
+	c := &Config{}
+	if err := envconfig.Process(appName, c); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+	}
+	config = c
+}
 
 type QuayPermission struct {
 	Name string `json:"name"`
@@ -83,8 +104,8 @@ type RequestRepository struct {
 }
 
 func QuayURLParse(hostname string) *url.URL {
-	if os.Getenv("QUAY_HOSTNAME") != "" {
-		hostname = os.Getenv("QUAY_HOSTNAME")
+	if config.Hostname != "" {
+		hostname = config.Hostname
 	}
 	u, err := url.Parse("https://" + hostname + "/api/v1/")
 	if err != nil {
@@ -93,5 +114,3 @@ func QuayURLParse(hostname string) *url.URL {
 	}
 	return u
 }
-
-var QuayAPIToken = os.Getenv("QUAY_API_TOKEN")
