@@ -1,6 +1,7 @@
 ## 0.6.4 (2017-10-18)
 
 - [Fix bug] #34 #32
+- Bump up to golang 1.8 in Travis CI #35
 
 ## 0.6.3 (2017-10-18)
 
