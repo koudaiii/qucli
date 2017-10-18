@@ -37,6 +37,13 @@ func (c *AddNotificationCommand) Run(args []string) int {
 		os.Exit(1)
 	}
 
+	// if you use add-notification command, you must set 'event' option and 'method' option.
+	if event == "" || method == "" {
+		fmt.Fprintln(os.Stderr, "if you use add-notification command, you must set 'event' option and 'method' option.")
+		fmt.Fprintln(os.Stderr, c.Help())
+		os.Exit(1)
+	}
+
 	// if you use 'vulnerability_found' event, you need set 'level' option.
 	if event == "vulnerability_found" && level == "" {
 		fmt.Fprintln(os.Stderr, "if you use 'vulnerability_found' event, you need set 'level' option.")
