@@ -1,3 +1,7 @@
+## 0.6.3 (2017-10-18)
+
+- [Fix bug] os.Getenv #33 #32
+
 ## 0.6.2 (2017-10-17)
 
 - fix version v0.6.2 and fix link in READE #30 #29
@@ -25,4 +29,3 @@
 ## 0.2.0 (2017-01-18)
 
 - list command
-
