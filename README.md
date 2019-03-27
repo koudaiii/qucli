@@ -89,6 +89,7 @@ $ docker run \
     --rm \
     -t \
     -e QUAY_API_TOKEN=foobar \
+    -e QUAY_HOSTNAME=quay.io \
     quay.io/koudaiii/qucli:latest
 ```
 
