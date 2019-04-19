@@ -1,3 +1,7 @@
+## 0.6.6 (2019-04-19)
+
+- [Fix bug] Default not use `HOSTNAME` env #44
+
 ## 0.6.5 (2017-10-18)
 
 - Add validate #37
