@@ -9,19 +9,15 @@ import (
 )
 
 type Config struct {
-	Hostname string `envconfig:"HOSTNAME"`
-	APIToken string `envconfig:"API_TOKEN"`
+	QuayHostname string `envconfig:"QUAY_HOSTNAME"`
+	QuayAPIToken string `envconfig:"QUAY_API_TOKEN"`
 }
-
-const (
-	appName = "quay"
-)
 
 var config *Config
 
 func init() {
 	c := &Config{}
-	if err := envconfig.Process(appName, c); err != nil {
+	if err := envconfig.Process("", c); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 	}
 	config = c
@@ -104,8 +100,8 @@ type RequestRepository struct {
 }
 
 func QuayURLParse(hostname string) *url.URL {
-	if config.Hostname != "" {
-		hostname = config.Hostname
+	if config.QuayHostname != "" {
+		hostname = config.QuayHostname
 	}
 	u, err := url.Parse("https://" + hostname + "/api/v1/")
 	if err != nil {
