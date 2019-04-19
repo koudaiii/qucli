@@ -1,5 +1,5 @@
 NAME      := qucli
-VERSION   := v0.6.5
+VERSION   := v0.6.6
 REVISION  := $(shell git rev-parse --short HEAD)
 
 SRCS      := $(shell find . -name '*.go' -type f)
