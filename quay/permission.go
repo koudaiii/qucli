@@ -14,7 +14,7 @@ func GetPermissions(namespace string, name string, accountType string, hostname 
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType) + "/"
 
-	body, err := utils.HttpGet(u.String(), config.APIToken)
+	body, err := utils.HttpGet(u.String(), config.QuayAPIToken)
 	if err != nil {
 		return permissions, err
 	}
@@ -35,7 +35,7 @@ func DeletePermission(namespace string, name string, accountType string, account
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType, account)
 
-	_, err := utils.HttpDelete(u.String(), config.APIToken)
+	_, err := utils.HttpDelete(u.String(), config.QuayAPIToken)
 	if err != nil {
 		return err
 	}
@@ -52,7 +52,7 @@ func AddPermission(namespace string, name string, accountType string, account st
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name, "permissions", accountType, account)
 
-	body, err := utils.HttpPut(u.String(), config.APIToken, req)
+	body, err := utils.HttpPut(u.String(), config.QuayAPIToken, req)
 	if err != nil {
 		return repos, err
 	}

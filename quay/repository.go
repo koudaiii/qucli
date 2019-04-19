@@ -20,7 +20,7 @@ func ListRepository(namespace string, public bool, hostname string) (QuayReposit
 
 	u.Path = path.Join(u.Path, "repository")
 
-	body, err := utils.HttpGet(u.String()+"?"+values.Encode(), config.APIToken)
+	body, err := utils.HttpGet(u.String()+"?"+values.Encode(), config.QuayAPIToken)
 	if err != nil {
 		return repositories, err
 	}
@@ -45,7 +45,7 @@ func GetRepository(namespace string, name string, hostname string) (ResponseRepo
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name)
 
-	body, err := utils.HttpGet(u.String(), config.APIToken)
+	body, err := utils.HttpGet(u.String(), config.QuayAPIToken)
 	if err != nil {
 		return repos, err
 	}
@@ -61,7 +61,7 @@ func DeleteRepository(namespace string, name string, hostname string) error {
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository", namespace, name)
 
-	_, err := utils.HttpDelete(u.String(), config.APIToken)
+	_, err := utils.HttpDelete(u.String(), config.QuayAPIToken)
 	if err != nil {
 		return err
 	}
@@ -80,7 +80,7 @@ func CreateRepository(namespace string, name string, visibility string, hostname
 	u := QuayURLParse(hostname)
 	u.Path = path.Join(u.Path, "repository")
 
-	body, err := utils.HttpPost(u.String(), config.APIToken, req)
+	body, err := utils.HttpPost(u.String(), config.QuayAPIToken, req)
 	if err != nil {
 		return repos, err
 	}
